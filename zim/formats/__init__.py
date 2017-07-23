@@ -74,7 +74,7 @@ import types
 
 from zim.fs import Dir, File
 from zim.parsing import link_type, is_url_re, \
-        url_encode, url_decode, URL_ENCODE_READABLE, URL_ENCODE_DATA
+    url_encode, url_decode, URL_ENCODE_READABLE, URL_ENCODE_DATA
 from zim.parser import Builder
 from zim.config import data_file, ConfigDict
 from zim.objectmanager import ObjectManager
@@ -269,7 +269,7 @@ class ParseTree(object):
         '''Returns True if the tree contains any content at all.'''
         root = self._etree.getroot()
         return root is not None and (
-                bool(root.getchildren()) or (root.text and not root.text.isspace())
+            bool(root.getchildren()) or (root.text and not root.text.isspace())
         )
 
     @property
@@ -951,7 +951,7 @@ class OldParseTreeBuilder(object):
 
         self._last = self._stack[-1]
         assert self._last.tag == tag, \
-                "end tag mismatch (expected %s, got %s)" % (self._last.tag, tag)
+            "end tag mismatch (expected %s, got %s)" % (self._last.tag, tag)
         self._tail = True
 
         if len(self._stack) > 1 and not (
@@ -1012,14 +1012,14 @@ class OldParseTreeBuilder(object):
 
         # Fix prefix newlines
         if self._tail and self._last.tag in ('h', 'p') \
-        and not text.startswith('\n'):
+                and not text.startswith('\n'):
             if text:
                 text = '\n' + text
             else:
                 text = '\n'
                 self._seen_eol = 1
         elif self._tail and self._last.tag == 'li' \
-        and text.startswith('\n'):
+                and text.startswith('\n'):
             text = text[1:]
             if not text.strip('\n'):
                 self._seen_eol -= 1
@@ -1030,7 +1030,7 @@ class OldParseTreeBuilder(object):
 
             # Tags that are not allowed to have newlines
             if not self._tail and self._last.tag in (
-            'h', 'emphasis', 'strong', 'mark', 'strike', 'code'):
+                    'h', 'emphasis', 'strong', 'mark', 'strike', 'code'):
                 # assume no nested tags in these types ...
                 if self._seen_eol:
                     text = text.rstrip('\n')

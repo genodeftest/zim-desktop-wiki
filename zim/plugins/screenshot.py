@@ -27,8 +27,8 @@ UNTESTED:
 """
 COMMAND = 'import'
 SUPPORTED_COMMANDS_BY_PLATFORM = dict([
-        ('posix', ('import', 'scrot')),
-        ('nt', ('boxcutter',)),
+    ('posix', ('import', 'scrot')),
+    ('nt', ('boxcutter',)),
 ])
 SUPPORTED_COMMANDS = SUPPORTED_COMMANDS_BY_PLATFORM[PLATFORM]
 if len(SUPPORTED_COMMANDS):
@@ -37,21 +37,21 @@ if len(SUPPORTED_COMMANDS):
 
 class ScreenshotPicker(object):
     cmd_options = dict([
-            ('scrot', {
-                    'select': ('--select', '--border'),
-                    'full': ('--multidisp',),
-                    'delay': '-d',
-            }),
-            ('import', {
-                    'select': ('-silent',),
-                    'full': ('-silent', '-window', 'root'),
-                    'delay': '-delay',
-            }),
-            ('boxcutter', {
-                    'select': None,
-                    'full': ('--fullscreen',),
-                    'delay': None,
-            }),
+        ('scrot', {
+            'select': ('--select', '--border'),
+            'full': ('--multidisp',),
+            'delay': '-d',
+        }),
+        ('import', {
+            'select': ('-silent',),
+            'full': ('-silent', '-window', 'root'),
+            'delay': '-delay',
+        }),
+        ('boxcutter', {
+            'select': None,
+            'full': ('--fullscreen',),
+            'delay': None,
+        }),
     ])
     cmd_default = COMMAND
     final_cmd_options = ()
@@ -90,19 +90,19 @@ class ScreenshotPicker(object):
 
 class InsertScreenshotPlugin(PluginClass):
     plugin_info = {
-            'name': _('Insert Screenshot'),  # T: plugin name
-            'description': _('''\
+        'name': _('Insert Screenshot'),  # T: plugin name
+        'description': _('''\
 This plugin  allows taking a screenshot and directly insert it
 in a zim page.
 
 This is a core plugin shipping with zim.
 '''),  # T: plugin description
-            'author': 'Jaap Karssenberg',
-            'help': 'Plugins:Insert Screenshot',
+        'author': 'Jaap Karssenberg',
+        'help': 'Plugins:Insert Screenshot',
     }
     plugin_preferences = (
-            # key, type, label, default
-            ('screenshot_command', 'choice', _('Screenshot Command'), COMMAND, SUPPORTED_COMMANDS),  # T: plugin preference
+        # key, type, label, default
+        ('screenshot_command', 'choice', _('Screenshot Command'), COMMAND, SUPPORTED_COMMANDS),  # T: plugin preference
     )
     screenshot_cmd = COMMAND
 
@@ -160,7 +160,7 @@ class MainWindowExtension(WindowExtension):
         notebook = self.window.ui.notebook  # XXX
         page = self.window.ui.page  # XXX
         dialog = InsertScreenshotDialog.unique(self, self.window, notebook, page,
-                                                                                   self.plugin.preferences['screenshot_command'])
+                                               self.plugin.preferences['screenshot_command'])
         dialog.show_all()
 
 
@@ -173,9 +173,9 @@ class InsertScreenshotDialog(Dialog):
         self.screenshot_command = screenshot_command
         if ScreenshotPicker.has_select_cmd(self.screenshot_command):
             self.screen_radio = gtk.RadioButton(None,
-                                                                                    _('Capture whole screen'))  # T: option in 'insert screenshot' dialog
+                                                _('Capture whole screen'))  # T: option in 'insert screenshot' dialog
             self.select_radio = gtk.RadioButton(self.screen_radio,
-                                                                                    _('Select window or region'))  # T: option in 'insert screenshot' dialog
+                                                _('Select window or region'))  # T: option in 'insert screenshot' dialog
             self.vbox.add(self.screen_radio)
             self.vbox.add(self.select_radio)
 
@@ -215,7 +215,7 @@ class InsertScreenshotDialog(Dialog):
                 pageview.insert_image(imgfile, interactive=False, force=True)
             else:
                 ErrorDialog(self.ui,
-                                        _('Some error occurred while running "%s"') % self.screenshot_command).run()
+                            _('Some error occurred while running "%s"') % self.screenshot_command).run()
                 # T: Error message in "insert screenshot" dialog, %s will be replaced by application name
 
         tmpfile.dir.touch()

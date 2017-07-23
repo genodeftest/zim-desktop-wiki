@@ -146,75 +146,75 @@ class TestTaskParser(tests.TestCase):
         mydate = '%04i-%02i-%02i' % parse_date('11/12')
 
         wanted = [
-                (t('TODO: test heading with label'), []),
-                (t('A'), []),
-                (t('B'), []),
-                (t('C'), []),
-                (t('D'), []),
-                (t('E'), []),
-                (t('FIXME: dus'), []),
-                (t('Simple'), []),
-                (t('List'), []),
-                (t('List with'), [
-                        (t('Nested items'), []),
-                        (t('Some are done', open=False), []),
-                        (t('Done but with open child', open=True), [
-                                (t('Others not', open=False), []),
-                                (t('FOOOOO'), []),
-                        ]),
+            (t('TODO: test heading with label'), []),
+            (t('A'), []),
+            (t('B'), []),
+            (t('C'), []),
+            (t('D'), []),
+            (t('E'), []),
+            (t('FIXME: dus'), []),
+            (t('Simple'), []),
+            (t('List'), []),
+            (t('List with'), [
+                (t('Nested items'), []),
+                (t('Some are done', open=False), []),
+                (t('Done but with open child', open=True), [
+                    (t('Others not', open=False), []),
+                    (t('FOOOOO'), []),
                 ]),
-                (t('Bar'), []),
-                (t('And then there are @tags', tags='tags'), []),
-                (t('Next: And due dates'), []),
-                (t('Date [d: 11/12]', due=mydate), []),
-                (t('Date [d: 11/12/2012]', due='2012-12-11'), [
-                        (t('TODO: BAR !!!', prio=3, due='2012-12-11'), []),
-                        # due date is inherited
-                ]),
-                (t('Date <2012-03-27 >2012-03-01', due='2012-03-27', start='2012-03-01'), []),
-                (t('Date < wk1213.3', due='2012-03-28'), []),
-                (t('Date < wk1213.3! with punctuation', due='2012-03-28', prio=1), []),
-                (t('Not a date < wk1213.8'), []),
-                (t('Not a date < wk1213foooooo'), []),
+            ]),
+            (t('Bar'), []),
+            (t('And then there are @tags', tags='tags'), []),
+            (t('Next: And due dates'), []),
+            (t('Date [d: 11/12]', due=mydate), []),
+            (t('Date [d: 11/12/2012]', due='2012-12-11'), [
+                (t('TODO: BAR !!!', prio=3, due='2012-12-11'), []),
+                # due date is inherited
+            ]),
+            (t('Date <2012-03-27 >2012-03-01', due='2012-03-27', start='2012-03-01'), []),
+            (t('Date < wk1213.3', due='2012-03-28'), []),
+            (t('Date < wk1213.3! with punctuation', due='2012-03-28', prio=1), []),
+            (t('Not a date < wk1213.8'), []),
+            (t('Not a date < wk1213foooooo'), []),
 
-                # this list inherits the @home tag - and inherits prio
-                (t('Some more tasks !!!', prio=3, tags='home'), [
-                        (t('Foo !', prio=1, tags='home'), []),
-                        (t('Bar', prio=3, tags='home'), []),
+            # this list inherits the @home tag - and inherits prio
+            (t('Some more tasks !!!', prio=3, tags='home'), [
+                (t('Foo !', prio=1, tags='home'), []),
+                (t('Bar', prio=3, tags='home'), []),
+            ]),
+            (t('TODO: dus'), []),
+            (t('FIXME: jaja - TODO !! @FIXME', prio=2, tags='FIXME'), []),
+            (t('TODO: dus - list item'), []),
+            (t('FIXME: jaja - TODO !! @FIXME - list item', prio=2, tags='FIXME'), []),
+            (t('Sub item bullets'), []),
+            (t('Sub item numbered'), []),
+            (t('Main @tag1 @tag2 !', prio=1, tags='tag1,tag2'), [
+                (t('Sub1', prio=1, open=False, tags='tag1,tag2'), []),
+                (t('Sub2 @tag3 !!!!', prio=4, tags='tag1,tag2,tag3'), [
+                    (t('Sub2-1', prio=4, open=False, tags='tag1,tag2,tag3'), []),
+                    (t('Sub2-2 @tag4', prio=4, open=False, tags='tag1,tag2,tag3,tag4'), []),
+                    (t('Sub2-3', prio=4, tags='tag1,tag2,tag3'), []),
                 ]),
-                (t('TODO: dus'), []),
-                (t('FIXME: jaja - TODO !! @FIXME', prio=2, tags='FIXME'), []),
-                (t('TODO: dus - list item'), []),
-                (t('FIXME: jaja - TODO !! @FIXME - list item', prio=2, tags='FIXME'), []),
-                (t('Sub item bullets'), []),
-                (t('Sub item numbered'), []),
-                (t('Main @tag1 @tag2 !', prio=1, tags='tag1,tag2'), [
-                        (t('Sub1', prio=1, open=False, tags='tag1,tag2'), []),
-                        (t('Sub2 @tag3 !!!!', prio=4, tags='tag1,tag2,tag3'), [
-                                (t('Sub2-1', prio=4, open=False, tags='tag1,tag2,tag3'), []),
-                                (t('Sub2-2 @tag4', prio=4, open=False, tags='tag1,tag2,tag3,tag4'), []),
-                                (t('Sub2-3', prio=4, tags='tag1,tag2,tag3'), []),
-                        ]),
-                        (t('Sub3', prio=1, tags='tag1,tag2'), []),
-                ]),
-                (t('A', tags='someday'), []),
-                (t('B', tags='someday'), [
-                        (t('B-1', tags='someday'), []),
-                ]),
-                (t('C', tags='someday'), []),
-                (t('main task', tags='home'), [
-                        (t('do this', open=False, tags='home'), []),
-                        (t('Next: do that', tags='home'), []),
-                        (t('Next: do something else', tags='home'), []),
-                ]),
-                (t('Closed parent task', open=True), [
-                        (t('With open child'), []),
-                        (t('Must be open as well to show up in list'), []),
-                ]),
-                (t('Closed parent task', open=False), [
-                        (t('With closed children', open=False), []),
-                        (t('Should not', open=False), []),
-                ]),
+                (t('Sub3', prio=1, tags='tag1,tag2'), []),
+            ]),
+            (t('A', tags='someday'), []),
+            (t('B', tags='someday'), [
+                (t('B-1', tags='someday'), []),
+            ]),
+            (t('C', tags='someday'), []),
+            (t('main task', tags='home'), [
+                (t('do this', open=False, tags='home'), []),
+                (t('Next: do that', tags='home'), []),
+                (t('Next: do something else', tags='home'), []),
+            ]),
+            (t('Closed parent task', open=True), [
+                (t('With open child'), []),
+                (t('Must be open as well to show up in list'), []),
+            ]),
+            (t('Closed parent task', open=False), [
+                (t('With closed children', open=False), []),
+                (t('Should not', open=False), []),
+            ]),
         ]
 
         tree = WikiParser().parse(WIKI_TEXT)
