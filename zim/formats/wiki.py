@@ -28,12 +28,12 @@ info = {
 
 
 bullet_pattern = u'(?:[\\*\u2022]|\\[[ \\*x>]\\]|\\d+\\.|[a-zA-Z]\\.)[\\ \\t]+'
-        # bullets can be '*' or 0x2022 for normal items
-        # and '[ ]', '[*]', '[x]' or '[>]' for checkbox items
-        # and '1.', '10.', or 'a.' for numbered items (but not 'aa.')
+# bullets can be '*' or 0x2022 for normal items
+# and '[ ]', '[*]', '[x]' or '[>]' for checkbox items
+# and '1.', '10.', or 'a.' for numbered items (but not 'aa.')
 
 bullet_line_re = re.compile(ur'^(\t*)(%s)(.*\n)$' % bullet_pattern)
-        # matches list item: prefix, bullet, text
+# matches list item: prefix, bullet, text
 
 number_bullet_re = re.compile(u'^(\d+|[a-zA-Z])\.$')
 
@@ -49,20 +49,20 @@ def check_number_bullet(bullet):
         return None
 
 param_re = re.compile('([\w-]+)=("(?:[^"]|"{2})*"|\S*)')
-    # matches parameter list for objects
-    # allow name="foo bar" and name=Foo
+# matches parameter list for objects
+# allow name="foo bar" and name=Foo
 
 empty_lines_re = re.compile(r'((?:^[\ \t]*\n)+)', re.M | re.U)
-    # match multiple empty lines
+# match multiple empty lines
 
 unindented_line_re = re.compile('^\S', re.M)
-    # match any unindented line
+# match any unindented line
 
 
 def _remove_indent(text, indent):
     return re.sub('(?m)^' + indent, '', text)
-        # Specify "(?m)" instead of re.M since "flags" keyword is not
-        # supported in python 2.6
+    # Specify "(?m)" instead of re.M since "flags" keyword is not
+    # supported in python 2.6
 
 
 class WikiParser(object):
@@ -191,10 +191,10 @@ class WikiParser(object):
                 break
 
         level = 7 - min(6, i)
-            # == is level 5
-            # === is level 4
-            # ...
-            # ======= is level 1
+        # == is level 5
+        # === is level 4
+        # ...
+        # ======= is level 1
 
         text = text[i:].lstrip() + '\n'
         builder.append(HEADING, {'level': level}, text)

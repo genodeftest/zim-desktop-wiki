@@ -51,12 +51,12 @@ class ExpressionParser(object):
 
     tokens = [',', '[', ']', '(', ')'] \
             + [k for k in operators.keys() if not k.isalnum()]
-            # Only inluding NON-alphanumeric operators here
+    # Only inluding NON-alphanumeric operators here
 
     _param_re = re.compile(r'^[^\W\d_]\w*(\.[^\W_]\w*)*$')
-            # like "name.name" but first char can not be "_"
-            # digits are allowed after dot, since template assumes dot notation for list index as well..
-            # FIXME for generic use make this configurable / subclass template specific version
+    # like "name.name" but first char can not be "_"
+    # digits are allowed after dot, since template assumes dot notation for list index as well..
+    # FIXME for generic use make this configurable / subclass template specific version
 
     def __init__(self):
         tokens = map(re.escape, self.tokens)

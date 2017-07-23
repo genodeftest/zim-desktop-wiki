@@ -122,7 +122,7 @@ class PageNotFoundError(PageError):
 class PageNotAllowedError(PageNotFoundError):
     _msg = _('Page not allowed: %s')  # T: message for PageNotAllowedError
     description = _('This page name cannot be used due to technical limitations of the storage')
-            # T: description for PageNotAllowedError
+    # T: description for PageNotAllowedError
 
 
 class PageExistsError(Error):

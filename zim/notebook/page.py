@@ -32,9 +32,9 @@ _pagename_invalid_char_re = re.compile(
                 )) + ']' +
         ')',
 re.UNICODE)
-        # This pattern matches a non-alphanumber at start or after the ':'
-        # seperator. It also matches any invalid character.
-        # The UNICODE flag is used to make the alphanumber check international.
+# This pattern matches a non-alphanumber at start or after the ':'
+# seperator. It also matches any invalid character.
+# The UNICODE flag is used to make the alphanumber check international.
 
 
 class Path(object):
@@ -313,7 +313,7 @@ class HRef(object):
             rel = HREF_REL_FLOATING
 
         names = Path.makeValidPageName(href.lstrip('+'))
-            # Can raise ValueError if link would reduce to empty string
+        # Can raise ValueError if link would reduce to empty string
         return klass(rel, names)
 
     def __init__(self, rel, names):
@@ -389,8 +389,8 @@ class Page(Path, SignalEmitter):
         assert isinstance(path, Path)
         self.name = path.name
         self.haschildren = haschildren
-            # Note: this attribute is updated by the owning notebook
-            # when a child page is stored
+        # Note: this attribute is updated by the owning notebook
+        # when a child page is stored
         self.valid = True
         self.modified = False
         self._parsetree = None

@@ -95,7 +95,7 @@ class GnuplotGenerator(ImageGeneratorClass):
         try:
             gnu_gp = Application(gnuplot_cmd)
             gnu_gp.run(args=(plotscriptfile.basename, ), cwd=plotscriptfile.dir)
-                                            # you call it as % gnuplot output.plt
+            # you call it as % gnuplot output.plt
 
         except ApplicationError:
             return None, None  # Sorry - no log

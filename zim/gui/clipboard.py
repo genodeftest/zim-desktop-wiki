@@ -41,8 +41,8 @@ PAGELIST_TARGET = (PAGELIST_TARGET_NAME, 0, PAGELIST_TARGET_ID)
 
 IMAGE_TARGET_ID = 6
 IMAGE_TARGETS = tuple(gtk.target_list_add_image_targets(info=IMAGE_TARGET_ID))
-        # According to docs we should provide list as arg to this function,
-        # but seems docs are not correct
+# According to docs we should provide list as arg to this function,
+# but seems docs are not correct
 IMAGE_TARGET_NAMES = tuple([target[0] for target in IMAGE_TARGETS])
 
 # Add image format names as well, seen these being used by MS Office
@@ -57,19 +57,19 @@ for format in gtk.gdk.pixbuf_get_formats():
 
 URI_TARGET_ID = 7
 URI_TARGETS = tuple(gtk.target_list_add_uri_targets(info=URI_TARGET_ID))
-    # According to docs we should provide list as arg to this function,
-    # but seems docs are not correct
+# According to docs we should provide list as arg to this function,
+# but seems docs are not correct
 URI_TARGET_NAMES = tuple([target[0] for target in URI_TARGETS])
 
 HTML_TARGET_ID = 8
 HTML_TARGET_NAMES = ('text/html', 'HTML Format')
-    # "HTML Format" is from MS Word
+# "HTML Format" is from MS Word
 HTML_TARGETS = tuple([(name, 0, HTML_TARGET_ID) for name in HTML_TARGET_NAMES])
 
 TEXT_TARGET_ID = 9
 TEXT_TARGETS = tuple(gtk.target_list_add_text_targets(info=TEXT_TARGET_ID))
-    # According to docs we should provide list as arg to this function,
-    # but seems docs are not correct
+# According to docs we should provide list as arg to this function,
+# but seems docs are not correct
 TEXT_TARGET_NAMES = tuple([target[0] for target in TEXT_TARGETS])
 
 # All targets that we can convert to a parsetree, in order of choice
@@ -106,7 +106,7 @@ def unpack_urilist(text):
     lines = text.splitlines()  # takes care of \r\n
     return [line.decode('utf-8')
             for line in lines if line and not line.isspace()]
-        # Just to be sure we also skip empty or whitespace lines
+    # Just to be sure we also skip empty or whitespace lines
 
 # TODO: Probably the serialize formats can replace custom copy/paste
 # handlers in TextView and TextBuffer as well
@@ -227,7 +227,7 @@ def parsetree_from_selectiondata(selectiondata, notebook=None, path=None):
 
         dir = notebook.get_attachments_dir(path)
         assert isinstance(dir, LocalFolder) or hasattr(dir, '_folder') and isinstance(dir._folder, LocalFolder)
-            # XXX: assert we have local path  - HACK to deal with FilesAttachmentFolder
+        # XXX: assert we have local path  - HACK to deal with FilesAttachmentFolder
         if not dir.exists():
             logger.debug("Creating attachment dir: %s", dir)
             dir.touch()
@@ -555,7 +555,7 @@ class ClipboardManager(object):
             return None
 
         targets = [n for n in PARSETREE_ACCEPT_TARGET_NAMES if n in targets]
-            # Filter and sort by PARSETREE_ACCEPT_TARGET_NAMES
+        # Filter and sort by PARSETREE_ACCEPT_TARGET_NAMES
 
         if targets:
             name = targets[0]
@@ -648,23 +648,23 @@ class Win32HtmlFormat:
             "SourceURL:%s\r\n"
 
     #~ MARKER_BLOCK_EX = \
-        #~ "Version:(\S+)\s+" \
-        #~ "StartHTML:(\d+)\s+" \
-        #~ "EndHTML:(\d+)\s+" \
-        #~ "StartFragment:(\d+)\s+" \
-        #~ "EndFragment:(\d+)\s+" \
-        #~ "StartSelection:(\d+)\s+" \
-        #~ "EndSelection:(\d+)\s+" \
-        #~ "SourceURL:(\S+)"
+    #~ "Version:(\S+)\s+" \
+    #~ "StartHTML:(\d+)\s+" \
+    #~ "EndHTML:(\d+)\s+" \
+    #~ "StartFragment:(\d+)\s+" \
+    #~ "EndFragment:(\d+)\s+" \
+    #~ "StartSelection:(\d+)\s+" \
+    #~ "EndSelection:(\d+)\s+" \
+    #~ "SourceURL:(\S+)"
     #~ MARKER_BLOCK_EX_RE = re.compile(MARKER_BLOCK_EX)
 
     #~ MARKER_BLOCK = \
-        #~ "Version:(\S+)\s+" \
-        #~ "StartHTML:(\d+)\s+" \
-        #~ "EndHTML:(\d+)\s+" \
-        #~ "StartFragment:(\d+)\s+" \
-        #~ "EndFragment:(\d+)\s+" \
-        #~ "SourceURL:(\S+)"
+    #~ "Version:(\S+)\s+" \
+    #~ "StartHTML:(\d+)\s+" \
+    #~ "EndHTML:(\d+)\s+" \
+    #~ "StartFragment:(\d+)\s+" \
+    #~ "EndFragment:(\d+)\s+" \
+    #~ "SourceURL:(\S+)"
     #~ MARKER_BLOCK_RE = re.compile(MARKER_BLOCK)
 
     DEFAULT_HTML_BODY = \
@@ -706,19 +706,19 @@ class Win32HtmlFormat:
         #~ # Try the extended format first (which has an explicit selection)
         #~ matches = self.MARKER_BLOCK_EX_RE.match(src)
         #~ if matches:
-            #~ self.prefix = matches.group(0)
-            #~ self.htmlClipboardVersion = matches.group(1)
-            #~ self.html = src[int(matches.group(2)):int(matches.group(3))]
-            #~ self.fragment = src[int(matches.group(4)):int(matches.group(5))]
-            #~ self.selection = src[int(matches.group(6)):int(matches.group(7))]
-            #~ self.source = matches.group(8)
+        #~ self.prefix = matches.group(0)
+        #~ self.htmlClipboardVersion = matches.group(1)
+        #~ self.html = src[int(matches.group(2)):int(matches.group(3))]
+        #~ self.fragment = src[int(matches.group(4)):int(matches.group(5))]
+        #~ self.selection = src[int(matches.group(6)):int(matches.group(7))]
+        #~ self.source = matches.group(8)
         #~ else:
-            #~ # Failing that, try the version without a selection
-            #~ matches = self.MARKER_BLOCK_RE.match(src)
-            #~ if matches:
-                #~ self.prefix = matches.group(0)
-                #~ self.htmlClipboardVersion = matches.group(1)
-                #~ self.html = src[int(matches.group(2)):int(matches.group(3))]
-                #~ self.fragment = src[int(matches.group(4)):int(matches.group(5))]
-                #~ self.source = matches.group(6)
-                #~ self.selection = self.fragment
+        #~ # Failing that, try the version without a selection
+        #~ matches = self.MARKER_BLOCK_RE.match(src)
+        #~ if matches:
+        #~ self.prefix = matches.group(0)
+        #~ self.htmlClipboardVersion = matches.group(1)
+        #~ self.html = src[int(matches.group(2)):int(matches.group(3))]
+        #~ self.fragment = src[int(matches.group(4)):int(matches.group(5))]
+        #~ self.source = matches.group(6)
+        #~ self.selection = self.fragment

@@ -82,8 +82,8 @@ This is a core plugin shipping with zim.
     )
 
     hide_preferences = ('nonactionable_tags', 'tag_by_page', 'use_workweek')
-            # These are deprecated, but I don't dare to remove them yet
-            # so hide them in the configuration dialog instead
+    # These are deprecated, but I don't dare to remove them yet
+    # so hide them in the configuration dialog instead
 
 
 @extends('Notebook')
@@ -180,7 +180,7 @@ class MainWindowExtension(WindowExtension):
                 except ValueError:
                     pass
             self.window.add_tab(_('Tasks'), self._widget, preferences['pane'])
-                                                                            # T: tab label for side pane
+            # T: tab label for side pane
             self._widget.show_all()
         else:
             if self._widget:
@@ -198,8 +198,8 @@ class MainWindowExtension(WindowExtension):
             self._widget.task_list.refresh()
 
         callback = DelayedCallback(10, on_tasklist_changed)
-            # Don't really care about the delay, but want to
-            # make it less blocking - now it is at least on idle
+        # Don't really care about the delay, but want to
+        # make it less blocking - now it is at least on idle
 
         # XXX HACK to get dependency to connect to
         # -- no access to plugin, so can;t use get_extension()

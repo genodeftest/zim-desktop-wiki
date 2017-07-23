@@ -178,7 +178,7 @@ This is a core plugin shipping with zim.
     }
 
     #~ plugin_preferences = (
-        # key, type, label, default
+    # key, type, label, default
     #~ )
 
 
@@ -239,7 +239,7 @@ class QuickNoteDialog(Dialog):
         label = gtk.Label(_('Notebook') + ': ')
         label.set_alignment(0.0, 0.5)
         self.form.attach(label, 0, 1, 0, 1, xoptions=gtk.FILL)
-            # T: Field to select Notebook from drop down list
+        # T: Field to select Notebook from drop down list
         self.notebookcombobox = NotebookComboBox(current=notebook)
         self.notebookcombobox.connect('changed', self.on_notebook_changed)
         self.form.attach(self.notebookcombobox, 1, 2, 0, 1)
@@ -302,7 +302,7 @@ class QuickNoteDialog(Dialog):
         self.form.widgets['new_page'].connect('toggled', switch_input)
 
         self.open_page_check = gtk.CheckButton(_('Open _Page'))  # T: Option in quicknote dialog
-            # Don't use "O" as accelerator here to avoid conflict with "Ok"
+        # Don't use "O" as accelerator here to avoid conflict with "Ok"
         self.open_page_check.set_active(self.uistate['open_page'])
         self.action_area.pack_start(self.open_page_check, False)
         self.action_area.set_child_secondary(self.open_page_check, True)
@@ -366,7 +366,7 @@ class QuickNoteDialog(Dialog):
         if id == gtk.RESPONSE_DELETE_EVENT:
             if self.textview.get_buffer().get_modified():
                 ok = QuestionDialog(self, _('Discard note?')).run()
-                    # T: confirm closing quick note dialog
+                # T: confirm closing quick note dialog
                 if ok:
                     Dialog.do_response(self, id)
                 # else pass
@@ -410,7 +410,7 @@ class QuickNoteDialog(Dialog):
             self._updating_title = True
             bounds = buffer.get_bounds()
             title = buffer.get_text(*bounds).strip()[:50]
-                # Cut off at 50 characters to prevent using a whole paragraph
+            # Cut off at 50 characters to prevent using a whole paragraph
             title = title.replace(':', '')
             if '\n' in title:
                 title, _ = title.split('\n', 1)

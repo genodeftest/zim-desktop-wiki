@@ -418,12 +418,12 @@ class CalendarWidget(gtk.VBox, WindowSidePaneWidget):
         self._refresh_label()
         self._timer_id = \
                 gobject.timeout_add(300000, self._refresh_label)
-            # 5 minute = 300_000 ms
-            # Ideally we only need 1 timer per day at 00:00, but not
-            # callback for that
+        # 5 minute = 300_000 ms
+        # Ideally we only need 1 timer per day at 00:00, but not
+        # callback for that
         self.connect('destroy',
                 lambda o: gobject.source_remove(o._timer_id))
-            # Clear reference, else we get a new timer for every dialog
+        # Clear reference, else we get a new timer for every dialog
 
         self.calendar = Calendar()
         self.calendar.display_options(
@@ -451,7 +451,7 @@ class CalendarWidget(gtk.VBox, WindowSidePaneWidget):
     def _refresh_label(self, *a):
         # print "UPDATE LABEL %s" % id(self)
         format = _('%A %d %B %Y').replace(' 0', ' ')
-            # T: strftime format for current date label
+        # T: strftime format for current date label
         text = datetime.strftime(format, datetime.date.today())
         self.label.set_text(text)
         return True  # else timer is stopped

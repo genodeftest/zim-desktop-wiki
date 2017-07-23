@@ -189,7 +189,7 @@ class TestSearch(tests.TestCase):
         results.search(query, callback=self.callback_check)
         #~ print results
         self.assertTrue(Path('Test:tags') in results and len(results) == 2)
-            # Tasklist:all is the second match
+        # Tasklist:all is the second match
 
         query = Query('Tag: NonExistingTag')
         results.search(query, callback=self.callback_check)

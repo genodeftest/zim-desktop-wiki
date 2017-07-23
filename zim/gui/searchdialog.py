@@ -60,7 +60,7 @@ class SearchDialog(Dialog):
             tooltips.set_tip(self.query_entry, help_text)
 
         self.namespacecheckbox = gtk.CheckButton(_('Limit search to the current page and sub-pages'))
-            # T: checkbox option in search dialog
+        # T: checkbox option in search dialog
         self.vbox.pack_start(self.namespacecheckbox, False)
 
         # TODO advanced query editor
@@ -141,7 +141,7 @@ class SearchResultsTreeView(BrowserTreeView):
 
     def __init__(self, window):
         model = gtk.ListStore(str, int, object)
-            # NAME_COL, SCORE_COL, PATH_COL
+        # NAME_COL, SCORE_COL, PATH_COL
         BrowserTreeView.__init__(self, model)
         self.app_window = window
         self.query = None
@@ -160,7 +160,7 @@ class SearchResultsTreeView(BrowserTreeView):
             self.append_column(column)
 
         model.set_sort_column_id(1, gtk.SORT_DESCENDING)
-            # By default sort by score
+        # By default sort by score
 
         self.connect('row-activated', self._do_open_page)
         self.connect('destroy', self.__class__._cancel)

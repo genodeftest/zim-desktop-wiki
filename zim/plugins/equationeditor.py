@@ -84,7 +84,7 @@ class EquationGenerator(ImageGeneratorClass):
         pngfile = File(self.texfile.path[:-4] + '.png')  # len('.tex') == 4
         dvipng = Application(dvipngcmd)
         dvipng.run((pngfile, dvifile))  # output, input
-            # No try .. except here - should never fail
+        # No try .. except here - should never fail
         # TODO dvipng can start processing before latex finished - can we win speed there ?
 
         return pngfile, logfile

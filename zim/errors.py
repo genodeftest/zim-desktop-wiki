@@ -72,7 +72,7 @@ def _run_error_dialog(error):
     from zim.gui.widgets import ErrorDialog
     ErrorDialog(None, error, do_logging=False).run()
     #~ except:
-        #~ logger.error('Failed to run error dialog')
+    #~ logger.error('Failed to run error dialog')
 
 
 def show_error(error):
@@ -129,7 +129,7 @@ class Error(Exception):
 
     description = ''
     msg = '<Unknown Error>'
-        # in case subclass does not define instance attribute
+    # in case subclass does not define instance attribute
 
     def __init__(self, msg, description=None):
         self.msg = msg

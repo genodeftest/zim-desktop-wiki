@@ -234,7 +234,7 @@ class ConfigDefinitionByClass(ConfigDefinition):
             return value.serialize_zim_config()
         else:
             return json.dumps(value, separators=(',', ':'))
-                # specify separators for compact encoding
+            # specify separators for compact encoding
 
 
 class Boolean(ConfigDefinition):

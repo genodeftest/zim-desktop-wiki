@@ -22,7 +22,7 @@ http://pp.com.mx/python/arithmetic.
     }
 
     #~ plugin_preferences = (
-            # key, type, label, default
+    # key, type, label, default
     #~ )
 
 

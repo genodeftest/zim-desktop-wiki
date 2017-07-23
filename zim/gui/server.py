@@ -54,7 +54,7 @@ class ServerWindow(gtk.Window):
         # Widgets
         self.status_label = gtk.Label()
         self.status_label.set_markup('<i>' + _('Server not started') + '</i>')
-                # T: Status in web server gui
+        # T: Status in web server gui
         self.start_button = IconButton('gtk-media-play')
         self.start_button.connect('clicked', lambda o: self.start())
         self.stop_button = IconButton('gtk-media-stop')
@@ -79,7 +79,7 @@ class ServerWindow(gtk.Window):
         self.portentry.set_value(port)
 
         self.public_checkbox = gtk.CheckButton(label=_('Allow public access'))
-            # T: Checkbox in web server gui
+        # T: Checkbox in web server gui
         self.public_checkbox.set_active(public)
 
         # Build the interface
@@ -159,7 +159,7 @@ class ServerWindow(gtk.Window):
         self.stop_button.set_sensitive(True)
 
         self.status_label.set_markup('<i>' + _('Server started') + '</i>')
-            # T: Status in web server gui
+        # T: Status in web server gui
         # if self.public_checkbox.get_active():
         #	url = 'http://%s:%i' % (self.httpd.server_name, self.httpd.server_port)
         # else:
@@ -195,12 +195,12 @@ class ServerWindow(gtk.Window):
 
         if self.httpd:
             self.httpd.socket.close()
-                # There is also a httpd.server_close(), but undocumented (!?)
+            # There is also a httpd.server_close(), but undocumented (!?)
             self.httpd = None
 
         # Update UI
         self.status_label.set_markup('<i>' + _('Server stopped') + '</i>')
-            # T: Status in web server gui
+        # T: Status in web server gui
         if self.link_button:
             self.link_button.set_sensitive(False)
         self.notebookcombobox.set_sensitive(True)

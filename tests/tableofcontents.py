@@ -136,14 +136,14 @@ sdfsdf
         def activate_row(m, path, i):
             #~ print ">>>", path
             widget.treeview.row_activated(path, column)
-                # TODO assert something here
+            # TODO assert something here
 
             widget.select_section(pageview.view.get_buffer(), path)
 
             menu = gtk.Menu()
             widget.treeview.get_selection().select_path(path)
             widget.on_populate_popup(widget.treeview, menu)
-                # TODO assert something here
+            # TODO assert something here
             widget.treeview.get_selection().unselect_path(path)
 
         model.foreach(activate_row)

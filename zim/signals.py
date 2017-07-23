@@ -167,7 +167,7 @@ class ConnectorMixin(object):
                 self.connectto(obj, signal, handler, order)
             else:
                 arg = signal + default[len(signal):]
-                        # fill in missing positional arguments
+                # fill in missing positional arguments
                 self.connectto(obj, *arg)
 
     def disconnect_from(self, obj):

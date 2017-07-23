@@ -141,7 +141,7 @@ class TrayIconBase(object):
         self.populate_menu_with_notebooks(menu, notebooks)
 
         item = gtk.MenuItem('  ' + _('_Other...'))  # Hack - using '  ' to indent visually
-            # T: menu item in tray icon menu
+        # T: menu item in tray icon menu
         item.connect_object('activate', self.__class__.do_open_notebook, self)
         menu.append(item)
 
@@ -162,9 +162,9 @@ class TrayIconBase(object):
         '''
         return []  # TODO
         #~ for uri in self.server.list_notebooks():
-            #~ info = NotebookInfo(uri)
-            #~ info.active = True
-            #~ yield info
+        #~ info = NotebookInfo(uri)
+        #~ info.active = True
+        #~ yield info
 
     def list_all_notebooks(self):
         '''Returns a list of all notebooks known in the current context
@@ -208,13 +208,13 @@ class TrayIconBase(object):
         for info in notebooks:
             #~ print '>>>', info
             item = gtk.MenuItem('  ' + info.name)
-                # Hack - using '  ' to indent visually
+            # Hack - using '  ' to indent visually
             if info.active:
                 child = item.get_child()
                 if isinstance(child, gtk.Label):
                     # FIXME this doesn't seem to work in Ubuntu menu :(
                     child.set_markup('  <b>' + info.name + '</b>')
-                            # Hack - using '  ' to indent visually
+                    # Hack - using '  ' to indent visually
             item.connect('activate', lambda o, u: self.do_activate_notebook(u), info.uri)
             menu.append(item)
 

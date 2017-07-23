@@ -62,7 +62,7 @@ class MainWindowExtension(WindowExtension):
             pass
 
         self.window.add_tab(_('BackLinks'), self.widget, preferences['pane'])
-            # T: widget label
+        # T: widget label
         self.widget.show_all()
         self.widget.show_all()
 
@@ -99,13 +99,13 @@ class BackLinksWidget(gtk.ScrolledWindow):
 
         try:
             backlinks = notebook.links.list_links(page, LINK_DIR_BACKWARD)
-                    # XXX allow access through page object
+            # XXX allow access through page object
         except IndexNotFoundError:
             backlinks = []
 
         for link in backlinks:
             href = notebook.pages.create_link(link.target, link.source)
-                    # relative link from target *back* to source
+            # relative link from target *back* to source
             text = href.to_wiki_link().strip(':')
             #~ model.append(None, (link.source, text))
             model.append((link.source, text))

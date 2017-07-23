@@ -208,7 +208,7 @@ class FormatPage(AssistantPage):
     title = _('Select the export format')  # T: title of step in export dialog
 
     CHOICE_OTHER = _('Other...')
-        # T: Option in drop down menu to specify another file
+    # T: Option in drop down menu to specify another file
 
     # FUTURE: this page could have a dynamic form with additional
     # fields requested by the template, e.g. author etc.
@@ -414,21 +414,21 @@ class ExportDoneDialog(MessageDialog):
         n_warning = logging_context.handler.n_warning
         if n_error and n_warning:
             text = _('%(n_error)i errors and %(n_warning)i warnings occurred, see log') % {'n_error': n_error, 'n_warning': n_warning}
-                # T: label in export dialog
+            # T: label in export dialog
         elif n_error:
             text = _('%i errors occurred, see log') % n_error
-                # T: label in export dialog
+            # T: label in export dialog
         elif n_warning:
             text = _('%i warnings occurred, see log') % n_warning
-                # T: label in export dialog
+            # T: label in export dialog
         else:
             text = None
 
         MessageDialog.__init__(self, parent, (_('Export completed'), text))
-            # T: label in export dialog
+        # T: label in export dialog
 
         log_button = Button(_('View _Log'), stock='gtk-file')
-            # T: button in export dialog
+        # T: button in export dialog
         log_button.set_sensitive(logging_context.file.exists())
         log_button.connect_object(
                 'clicked', self.__class__.on_show_log, self)

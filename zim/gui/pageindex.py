@@ -120,7 +120,7 @@ class PageTreeStoreBase(gtk.GenericTreeModel, gtk.TreeDragSource, gtk.TreeDragDe
         gtk.GenericTreeModel.__init__(self)
         self.current_page = None
         self.set_property('leak-references', False)
-                # We do our own memory management, thank you very much
+        # We do our own memory management, thank you very much
         self._flush_scheduled = False
 
     def flush_cache(self):
@@ -203,7 +203,7 @@ class PageTreeStoreBase(gtk.GenericTreeModel, gtk.TreeDragSource, gtk.TreeDragDe
                 return pango.WEIGHT_NORMAL
         elif column == N_CHILD_COL:
             return iter.n_children or ''
-                # don't display "0" to keep look bit clean
+            # don't display "0" to keep look bit clean
 
     def on_get_iter(self, treepath):
         '''Returns an MyTreeIter for a gtk TreePath or None'''
@@ -583,7 +583,7 @@ class PageIndex(gtk.ScrolledWindow):
 
     def on_open_page(self, ui, page, path):
         treepath = self.treeview.set_current_page(Path(path.name), vivificate=True)
-            # Force reloading Path - stale PageIndexRecord will not be checked later
+        # Force reloading Path - stale PageIndexRecord will not be checked later
         expand = ui.notebook.namespace_properties[path.name].get('auto_expand_in_index', True)
         if treepath and expand:
             self.treeview.select_treepath(treepath)

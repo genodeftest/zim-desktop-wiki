@@ -263,7 +263,7 @@ class ImageGeneratorDialog(Dialog):
         self.vbox.pack_start(hbox, False)
 
         self.previewbutton = Button(_('_Preview'), stock='gtk-refresh')
-                # T: button in e.g. equation editor dialog
+        # T: button in e.g. equation editor dialog
         self.previewbutton.set_sensitive(False)
         self.previewbutton.connect_object(
                 'clicked', self.__class__.preview, self)
@@ -273,7 +273,7 @@ class ImageGeneratorDialog(Dialog):
                 lambda b: self.previewbutton.set_sensitive(b.get_modified()))
 
         self.logbutton = Button(_('View _Log'), stock='gtk-file')
-                # T: button in e.g. equation editor dialog
+        # T: button in e.g. equation editor dialog
         self.logbutton.set_sensitive(False)
         self.logbutton.connect_object(
                 'clicked', self.__class__.show_log, self)
@@ -325,8 +325,8 @@ class ImageGeneratorDialog(Dialog):
             imagefile, logfile = self.generator.generate_image(text)
         except:
             logger.exception('Could not generate image')
-                    # TODO set "error" image instead of "broken" image
-                    # TODO set exception text as log message
+            # TODO set "error" image instead of "broken" image
+            # TODO set exception text as log message
         else:
             self.imagefile = imagefile
             self.logfile = logfile
@@ -352,7 +352,7 @@ class ImageGeneratorDialog(Dialog):
         if not (self.imagefile and self.imagefile.exists()):
             dialog = QuestionDialog(self,
                     _('An error occurred while generating the image.\nDo you want to save the source text anyway?'))
-                    # T: Question prompt when e.g. equation editor encountered an error generating the image to insert
+            # T: Question prompt when e.g. equation editor encountered an error generating the image to insert
             if not dialog.run():
                 return False
 

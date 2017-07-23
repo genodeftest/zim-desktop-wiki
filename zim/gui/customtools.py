@@ -94,7 +94,7 @@ class CustomToolList(gtk.TreeView):
         self.manager = manager
 
         model = gtk.ListStore(gtk.gdk.Pixbuf, str, str)
-                # PIXBUF_COL, TEXT_COL, NAME_COL
+        # PIXBUF_COL, TEXT_COL, NAME_COL
 
         gtk.TreeView.__init__(self, model)
         self.get_selection().set_mode(gtk.SELECTION_BROWSE)

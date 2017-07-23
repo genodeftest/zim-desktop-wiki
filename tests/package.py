@@ -67,7 +67,7 @@ class TestMetaData(tests.TestCase):
     def runTest(self):
         import zim
         revision = zim.get_zim_revision()
-            # This call could fail if bazaar revision format changed
+        # This call could fail if bazaar revision format changed
         self.assertTrue(isinstance(revision, basestring))
 
         # Check desktop file
@@ -124,7 +124,7 @@ class TestCoding(tests.TestCase):
         allow_gtk = ('zim/gui/', 'zim/inc/', 'zim/plugins/', 'tests/')
         for klass in ('gtk', 'gio'):
             import_re = re.compile(r'^(import|from)\s+%s' % klass, re.M)
-                # only match global imports - allow import in limitted scope
+            # only match global imports - allow import in limitted scope
             for file, code in self.list_code():
                 if os.name == 'nt':
                     file = file.replace('\\', '/')

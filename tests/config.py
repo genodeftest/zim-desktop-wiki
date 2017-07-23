@@ -378,7 +378,7 @@ class TestConfigDict(tests.TestCase):
         ))
 
         self.assertEqual(mydict.__getitem__, mydict._values.__getitem__)
-            # optimization still in place..
+        # optimization still in place..
 
         self.assertFalse(mydict.modified)
         self.assertEqual(len(mydict), 0)
@@ -752,7 +752,7 @@ foo=myprofile
         dict['FOO'].setdefault('newkey', 'ja')
         dict['FOO']['foo'] = 'dus'
         text = manager.get_config_file('dict.conf').read()
-            # We implicitly test that updates are stored already automatically
+        # We implicitly test that updates are stored already automatically
         self.assertEquals(text, '''\
 [FOO]
 foo=dus

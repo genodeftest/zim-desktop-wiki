@@ -228,30 +228,30 @@ class ExportTemplateContext(dict):
         #~ builder.start(BULLETLIST)
 
         #~ for page in self._content:
-            #~ current = 1
-            #~ for level, heading in ...:
-                #~ if level > current:
-                                #~ for range(current, level):
-                                        #~ builder.start(BULLETLIST)
-                                #~ current = level
-                #~ elif level < current:
-                                #~ for range(level, current):
-                                        #~ builder.end(BULLETLIST)
-                                #~ current = level
+        #~ current = 1
+        #~ for level, heading in ...:
+        #~ if level > current:
+        #~ for range(current, level):
+        #~ builder.start(BULLETLIST)
+        #~ current = level
+        #~ elif level < current:
+        #~ for range(level, current):
+        #~ builder.end(BULLETLIST)
+        #~ current = level
 
-                #~ builder.start(LISTITEM)
-                #~ builder.append(LINK, {'href': ...}, anchor)
-                #~ builder.end(LISTITEM)
+        #~ builder.start(LISTITEM)
+        #~ builder.append(LINK, {'href': ...}, anchor)
+        #~ builder.end(LISTITEM)
 
-            #~ for range(1, current):
-                #~ builder.end(BULLETLIST)
-            #~
+        #~ for range(1, current):
+        #~ builder.end(BULLETLIST)
+        #~
         #~ builder.end(BULLETLIST)
         #~ builder.end(FORMATTEDTEXT)
 
         #~ tree = builder.get_parsetree()
         #~ if not tree:
-            #~ return ''
+        #~ return ''
 
         #~ print "!!!", tree.tostring()
         #~ dumper = self.get_dumper(None)

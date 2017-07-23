@@ -267,7 +267,7 @@ class History(gobject.GObject):
         '''
         assert isinstance(path, HistoryPath)
         self._current = self._history.index(path)
-            # fails if path not in history
+        # fails if path not in history
         if not isinstance(path, RecentPath) \
         and self._update_recent(path):
             self.emit('changed')

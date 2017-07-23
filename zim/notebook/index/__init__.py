@@ -171,7 +171,7 @@ class Index(SignalEmitter):
             self._checker.queue_check(folder, recursive=recursive)
 
         self.background_check.callback = lambda *a: on_out_of_date_found(notebook, self.background_check)
-                # XXX: should go via constructor, but there notebook is not known
+        # XXX: should go via constructor, but there notebook is not known
         self.background_check.start()
 
     def flush(self):
@@ -354,13 +354,13 @@ class BackgroundCheck(object):
 def on_out_of_date_found(notebook, background_check):
     op = IndexUpdateOperation(notebook)
     op.connect('finished', lambda *a: background_check.start())  # continue checking
-        # TODO ensure robust in case operation gives error
+    # TODO ensure robust in case operation gives error
     try:
         op.run_on_idle()
     except NotebookOperationOngoing:
         other_op = ongoing_operation(notebook)
         other_op.connect('finished', lambda *a: background_check.start())  # continue checking
-            # TODO ensure robust in case operation gives error
+        # TODO ensure robust in case operation gives error
 
 
 class IndexUpdateOperation(NotebookOperation):

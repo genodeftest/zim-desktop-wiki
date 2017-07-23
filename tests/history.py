@@ -83,10 +83,10 @@ class TestHistory(tests.TestCase):
         self.assertEqual(len(pages), len(self.pages))
 
         self.assertEqual(pages[0].cursor, None)
-            # Newly appended pages should not have the cursor
-            # set - pageview has logic to do the right thing when
-            # no cursor is set. Setting default e.g. 0 will
-            # overrule this logic.
+        # Newly appended pages should not have the cursor
+        # set - pageview has logic to do the right thing when
+        # no cursor is set. Setting default e.g. 0 will
+        # overrule this logic.
 
         # walk backwards
         for i in range(2, len(self.pages) + 1):
@@ -243,7 +243,7 @@ class TestHistory(tests.TestCase):
         history.set_current(page)
         uniques = list(history.get_recent())
         self.assertEqual(len(uniques), i + 1)
-            # Not same as len(self.pages) because of deleted children
+        # Not same as len(self.pages) because of deleted children
 
         for page in self.pages:
             history._on_page_deleted(self.notebook, page)

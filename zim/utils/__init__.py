@@ -140,7 +140,7 @@ def natural_sort_key(string, numeric_padding=5):
 
     try:
         bytestring = locale.strxfrm(string)
-            # 8-bit byte string - enode to hex -- in pyton3 check if byte data type is handled better by sqlite3 and others
+        # 8-bit byte string - enode to hex -- in pyton3 check if byte data type is handled better by sqlite3 and others
     except MemoryError:
         # Known python issue :(
         bytestring = string.encode('utf-8')

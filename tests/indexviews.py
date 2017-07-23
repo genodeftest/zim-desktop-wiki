@@ -102,8 +102,8 @@ def new_test_database():
 from zim.notebook.index.pages import PagesIndexer, PagesView, \
         PagesTreeModelMixin, \
         IndexNotFoundError
-    #get_treepath_for_indexpath_factory, get_indexpath_for_treepath_factory, \
-    #get_treepaths_for_indexpath_flatlist_factory, get_indexpath_for_treepath_flatlist_factory, \
+#get_treepath_for_indexpath_factory, get_indexpath_for_treepath_factory, \
+#get_treepaths_for_indexpath_flatlist_factory, get_indexpath_for_treepath_flatlist_factory, \
 
 
 class TestPagesView(tests.TestCase):

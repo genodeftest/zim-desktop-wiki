@@ -41,9 +41,9 @@ class Command(object):
     arguments = ()  # : Define arguments, e.g ('NOTEBOOK', '[PAGE]')
 
     options = ()  # : Define options by 3-tuple of long, short & description.
-            #: E.g. ("foo=", "f", "set parameter for foo")
-            #: For options that can appear multiple times,
-            #: assign a list "[]" in "self.opts" before parse_options is called
+    #: E.g. ("foo=", "f", "set parameter for foo")
+    #: For options that can appear multiple times,
+    #: assign a list "[]" in "self.opts" before parse_options is called
 
     default_options = (
             ('verbose', 'V', 'Verbose output'),

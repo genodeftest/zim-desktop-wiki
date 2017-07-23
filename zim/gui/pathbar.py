@@ -157,7 +157,7 @@ class ScrolledHBox(gtk.HBox):
         if initial_timeout:
             self._scroll_timeout = \
                     gobject.timeout_add(self.initial_scroll_timeout, self.start_scrolling, direction)
-                # indirect recurs
+            # indirect recurs
         else:
             self._scroll_timeout = \
                     gobject.timeout_add(self.scroll_timeout, self.scroll, direction)
@@ -218,8 +218,8 @@ class ScrolledHBox(gtk.HBox):
         direction, index = self._anchor or (DIR_FORWARD, len(children) - 1)
         assert 0 <= index <= len(children)
         assert direction in (DIR_FORWARD, DIR_BACKWARD)
-            # default (DIR_FORWARD, -1) should show the last item (right most)
-            # and starts filling the space backward (to the left)
+        # default (DIR_FORWARD, -1) should show the last item (right most)
+        # and starts filling the space backward (to the left)
 
         spacing = self.get_spacing()
         border = self.get_border_width()
@@ -277,7 +277,7 @@ class ScrolledHBox(gtk.HBox):
         y = allocation.y + border
         h = allocation.height - 2 * border
         child_allocation = gtk.gdk.Rectangle(y=y, height=h)
-            # y and height are the same for all
+        # y and height are the same for all
         if not self.get_direction() == gtk.TEXT_DIR_RTL:
             # Left to Right
             child_allocation.x = allocation.x + border
@@ -459,7 +459,7 @@ class PathBar(ScrolledHBox):
                 label.set_markup('<b>' + encode_markup_text(label.get_text()) + '</b>')
             else:
                 label.set_text(label.get_text())
-                    # get_text() gives string without markup
+                # get_text() gives string without markup
             button.handler_unblock_by_func(self.on_button_clicked)
 
         if not self._selected is None:

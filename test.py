@@ -64,7 +64,7 @@ On Ubuntu or Debian install package 'python-coverage'.
                 sys.exit(1)
         elif o == '--fast':
             tests.FAST_TEST = True
-                # set before any test classes are loaded !
+            # set before any test classes are loaded !
         elif o == '--failfast':
             failfast = True
         elif o == '--ff':  # --fast --failfast

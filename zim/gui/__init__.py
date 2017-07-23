@@ -154,14 +154,14 @@ class NoSuchFileError(Error):
     '''
 
     description = _('The file or folder you specified does not exist.\nPlease check if you the path is correct.')
-        # T: Error description for "no such file or folder"
+    # T: Error description for "no such file or folder"
 
     def __init__(self, path):
         '''Constructor
         @param path: the L{File} or L{Dir} object
         '''
         self.msg = _('No such file or folder: %s') % path.path
-            # T: Error message, %s will be the file path
+        # T: Error message, %s will be the file path
 
 
 class ApplicationLookupError(Error):
@@ -173,7 +173,7 @@ class PageHasUnSavedChangesError(Error):
     '''Exception raised when page could not be saved'''
 
     msg = _('Page has un-saved changes')
-        # T: Error description
+    # T: Error description
 
 
 class GtkInterface(gobject.GObject):
@@ -368,28 +368,28 @@ class GtkInterface(gobject.GObject):
     # Adapt the GUI to OS X conventions
     ### TODO adapt this to support multiple toplevel windows per process ###
         #~ try:
-            #~ import gtkosx_application
-            #~ macapp = gtkosx_application.Application()
+        #~ import gtkosx_application
+        #~ macapp = gtkosx_application.Application()
 #~
-            #~ # move the menus to the OS X menu bar
-            #~ menu_bar = gtk.MenuBar()
-            #~ for i, child in enumerate(self._mainwindow.menubar.get_children()):
-                #~ child.reparent(menu_bar)
-            #~ macapp.set_menu_bar(menu_bar)
-            #~ self._mainwindow.menubar.hide()
-            #~ macapp.set_help_menu(self._mainwindow.uimanager.get_widget('/menubar/help_menu'))
+        #~ # move the menus to the OS X menu bar
+        #~ menu_bar = gtk.MenuBar()
+        #~ for i, child in enumerate(self._mainwindow.menubar.get_children()):
+        #~ child.reparent(menu_bar)
+        #~ macapp.set_menu_bar(menu_bar)
+        #~ self._mainwindow.menubar.hide()
+        #~ macapp.set_help_menu(self._mainwindow.uimanager.get_widget('/menubar/help_menu'))
 #~
-            #~ # move some menu items to the application menu
-            #~ quit = self._mainwindow.uimanager.get_widget('/menubar/file_menu/quit')
-            #~ macapp.connect('NSApplicationBlockTermination', lambda d: not self.quit())
-            #~ quit.hide()
-            #~ about = self._mainwindow.uimanager.get_widget('/menubar/help_menu/show_about')
-            #~ macapp.insert_app_menu_item(about, 0)
-            #~ prefs = self._mainwindow.uimanager.get_widget('/menubar/edit_menu/show_preferences')
-            #~ macapp.insert_app_menu_item(prefs, 1)
-            #~ macapp.ready()
+        #~ # move some menu items to the application menu
+        #~ quit = self._mainwindow.uimanager.get_widget('/menubar/file_menu/quit')
+        #~ macapp.connect('NSApplicationBlockTermination', lambda d: not self.quit())
+        #~ quit.hide()
+        #~ about = self._mainwindow.uimanager.get_widget('/menubar/help_menu/show_about')
+        #~ macapp.insert_app_menu_item(about, 0)
+        #~ prefs = self._mainwindow.uimanager.get_widget('/menubar/edit_menu/show_preferences')
+        #~ macapp.insert_app_menu_item(prefs, 1)
+        #~ macapp.ready()
         #~ except ImportError:
-            #~ pass
+        #~ pass
 
         # HACK: Delay opening first page till after show_all() -- else plugins are not initialized
         #       FIXME need to do extension & initialization of uistate earlier
@@ -729,7 +729,7 @@ class GtkInterface(gobject.GObject):
                 # assert statement could be optimized away
 
         self.notebook.index.touch_current_page_placeholder(path)
-            # XXX to be incorporated in checkout/checkin logic
+        # XXX to be incorporated in checkout/checkin logic
 
         logger.info('Open page: %s (%s)', page, path)
         self.emit('open-page', page, path)
@@ -839,7 +839,7 @@ class GtkInterface(gobject.GObject):
         @returns: C{True} if succesful
         '''
         path = self.notebook.pages.lookup_by_pagename(self.page)
-            # Force refresh "haschildren" ...
+        # Force refresh "haschildren" ...
         if path.haschildren:
             record = self.history.get_child(path)
             if not record is None:
@@ -1216,7 +1216,7 @@ class GtkInterface(gobject.GObject):
                     _('Create folder?'),
                             # T: Heading in a question dialog for creating a folder
                     _('The folder "%s" does not yet exist.\nDo you want to create it now?') % dir.basename)
-                    # T: Text in a question dialog for creating a folder, %s will be the folder base name
+            # T: Text in a question dialog for creating a folder, %s will be the folder base name
             create = QuestionDialog(self, question).run()
             if create:
                 dir.touch()
@@ -1353,7 +1353,7 @@ class GtkInterface(gobject.GObject):
         dir = self.notebook.get_attachments_dir(self.page)
         if dir is None:
             error = _('This page does not have an attachments folder')
-                # T: Error message
+            # T: Error message
             ErrorDialog(self, error).run()
         else:
             dir = Dir(dir.path)  # XXX
@@ -1678,7 +1678,7 @@ class GtkInterface(gobject.GObject):
         import zim
         dialog.set_version(zim.__version__)
         dialog.set_comments(_('A desktop wiki'))
-            # T: General description of zim itself
+        # T: General description of zim itself
         file = data_file('zim.png')
         pixbuf = gtk.gdk.pixbuf_new_from_file(file.path)
         dialog.set_logo(pixbuf)
@@ -1686,7 +1686,7 @@ class GtkInterface(gobject.GObject):
         dialog.set_license(zim.__license__)
         dialog.set_authors([zim.__author__])
         dialog.set_translator_credits(_('translator-credits'))
-            # T: This string needs to be translated with names of the translators for this language
+        # T: This string needs to be translated with names of the translators for this language
         dialog.set_website(zim.__url__)
         dialog.run()
         dialog.destroy()
@@ -1948,8 +1948,8 @@ class MainWindow(Window):
             if wasfullscreen != self.isfullscreen:
                 self.emit('fullscreen-changed')
                 schedule_on_idle(lambda: self.pageview.scroll_cursor_on_screen())
-                    # HACK to have this scroll done after all updates to
-                    # the gui are done...
+                # HACK to have this scroll done after all updates to
+                # the gui are done...
 
     def do_preferences_changed(self, *a):
         if self._switch_focus_accelgroup:
@@ -2221,12 +2221,12 @@ class MainWindow(Window):
 
     def show(self):
         self.uistate = self.ui.uistate['MainWindow']
-            # HACK - else we wont initialize in show()
+        # HACK - else we wont initialize in show()
         Window.show(self)
 
     def show_all(self):
         self.uistate = self.ui.uistate['MainWindow']
-            # HACK - else we wont initialize in show()
+        # HACK - else we wont initialize in show()
         Window.show_all(self)
 
     def init_uistate(self):
@@ -2305,8 +2305,8 @@ class MainWindow(Window):
 
         # Update menus etc.
         self.uimanager.ensure_update()
-            # Prevent flashing when the toolbar is loaded after showing the window
-            # and do this before connecting signal below for accelmap.
+        # Prevent flashing when the toolbar is loaded after showing the window
+        # and do this before connecting signal below for accelmap.
 
         # Add search bar onec toolbar is loaded
         space = gtk.SeparatorToolItem()
@@ -2321,7 +2321,7 @@ class MainWindow(Window):
             entry.set_icon_from_stock(gtk.ENTRY_ICON_SECONDARY, gtk.STOCK_FIND)
             entry.set_icon_activatable(gtk.ENTRY_ICON_SECONDARY, True)
             entry.set_icon_tooltip_text(gtk.ENTRY_ICON_SECONDARY, _('Search Pages...'))
-                # T: label in search entry
+            # T: label in search entry
         inline_search = lambda e, *a: self.ui.show_search(query=e.get_text() or None)
         entry.connect('activate', inline_search)
         entry.connect('icon-release', inline_search)
@@ -2394,7 +2394,7 @@ class MainWindow(Window):
         label = self.statusbar_backlinks_button.label
         label.set_text_with_mnemonic(
                 ngettext('%i _Backlink...', '%i _Backlinks...', n) % n)
-            # T: Label for button with backlinks in statusbar
+        # T: Label for button with backlinks in statusbar
         if n == 0:
             self.statusbar_backlinks_button.set_sensitive(False)
         else:
@@ -2456,7 +2456,7 @@ class BackLinksMenuButton(MenuButton):
             return
 
         self.menu.add(gtk.TearoffMenuItem())
-            # TODO: hook tearoff to trigger search dialog
+        # TODO: hook tearoff to trigger search dialog
         links.sort(key=lambda a: a.source.name)
         for link in links:
             item = gtk.MenuItem(link.source.name)
@@ -2483,8 +2483,8 @@ class PageWindow(Window):
         page = ui.notebook.get_page(page)
 
         self.uistate = ui.uistate['PageWindow']
-            # TODO remember for separate windows separately
-            # e.g. use PageWindow1, PageWindow2, etc
+        # TODO remember for separate windows separately
+        # e.g. use PageWindow1, PageWindow2, etc
         self.uistate.setdefault('windowsize', (500, 400), check=value_is_coord)
         w, h = self.uistate['windowsize']
         self.set_default_size(w, h)
@@ -2581,7 +2581,7 @@ class SaveCopyDialog(FileDialog):
 
     def __init__(self, ui, page=None):
         FileDialog.__init__(self, ui, _('Save Copy'), gtk.FILE_CHOOSER_ACTION_SAVE)
-            # T: Dialog title of file save dialog
+        # T: Dialog title of file save dialog
         if page is None:
             page = self.ui.page
         self.page = page
@@ -2641,7 +2641,7 @@ class MovePageDialog(Dialog):
         self.path = path
 
         self.vbox.add(gtk.Label(_('Move page "%s"') % self.path.name))
-            # T: Heading in 'move page' dialog - %s is the page name
+        # T: Heading in 'move page' dialog - %s is the page name
 
         try:
             i = self.ui.notebook.links.n_list_links_section(path, LINK_DIR_BACKWARD)
@@ -2651,8 +2651,8 @@ class MovePageDialog(Dialog):
         label = ngettext(
                 'Update %i page linking to this page',
                 'Update %i pages linking to this page', i) % i
-            # T: label in MovePage dialog - %i is number of backlinks
-            # TODO update label to reflect that links can also be to child pages
+        # T: label in MovePage dialog - %i is number of backlinks
+        # TODO update label to reflect that links can also be to child pages
         self.add_form([
                 ('parent', 'namespace', _('Section'), self.path.parent),
                         # T: Input label for the section to move a page to
@@ -2692,7 +2692,7 @@ class RenamePageDialog(Dialog):
         page = self.ui.notebook.get_page(self.path)
 
         self.vbox.add(gtk.Label(_('Rename page "%s"') % self.path.name))
-            # T: label in 'rename page' dialog - %s is the page name
+        # T: label in 'rename page' dialog - %s is the page name
 
         try:
             i = self.ui.notebook.links.n_list_links_section(path, LINK_DIR_BACKWARD)
@@ -2702,8 +2702,8 @@ class RenamePageDialog(Dialog):
         label = ngettext(
                 'Update %i page linking to this page',
                 'Update %i pages linking to this page', i) % i
-            # T: label in MovePage dialog - %i is number of backlinks
-            # TODO update label to reflect that links can also be to child pages
+        # T: label in MovePage dialog - %i is number of backlinks
+        # TODO update label to reflect that links can also be to child pages
 
         self.add_form([
                 ('name', 'string', _('Name')),
@@ -2761,9 +2761,9 @@ class DeletePageDialog(Dialog):
 
         label = gtk.Label()
         short = _('Delete page "%s"?') % self.path.basename
-            # T: Heading in 'delete page' dialog - %s is the page name
+        # T: Heading in 'delete page' dialog - %s is the page name
         long = _('Page "%s" and all of it\'s\nsub-pages and attachments will be deleted') % self.path.name
-            # T: Text in 'delete page' dialog - %s is the page name
+        # T: Text in 'delete page' dialog - %s is the page name
         label.set_markup('<b>' + short + '</b>\n\n' + long)
         vbox.pack_start(label, False)
 
@@ -2775,8 +2775,8 @@ class DeletePageDialog(Dialog):
         label = ngettext(
                 'Remove links from %i page linking to this page',
                 'Remove links from %i pages linking to this page', i) % i
-            # T: label in DeletePage dialog - %i is number of backlinks
-            # TODO update label to reflect that links can also be to child pages
+        # T: label in DeletePage dialog - %i is number of backlinks
+        # TODO update label to reflect that links can also be to child pages
         self.links_checkbox = gtk.CheckButton(label=label)
         vbox.pack_start(self.links_checkbox, False)
 
@@ -2796,7 +2796,7 @@ class DeletePageDialog(Dialog):
             n = 0
 
         string = ngettext('%i file will be deleted', '%i files will be deleted', n) % n
-            # T: label in the DeletePage dialog to warn user of attachments being deleted
+        # T: label in the DeletePage dialog to warn user of attachments being deleted
         if n > 0:
             string = '<b>' + string + '</b>'
 
@@ -2850,12 +2850,12 @@ class AttachFileDialog(FileDialog):
         dir = self.app_window.ui.notebook.get_attachments_dir(self.path)
         if dir is None:
             ErrorDialog(_('Page "%s" does not have a folder for attachments') % self.path)
-                # T: Error dialog - %s is the full page name
+            # T: Error dialog - %s is the full page name
             raise Exception('Page "%s" does not have a folder for attachments' % self.path)
 
         self.uistate.setdefault('insert_attached_images', True)
         checkbox = gtk.CheckButton(_('Insert images as link'))
-            # T: checkbox in the "Attach File" dialog
+        # T: checkbox in the "Attach File" dialog
         checkbox.set_active(not self.uistate['insert_attached_images'])
         self.filechooser.set_extra_widget(checkbox)
 

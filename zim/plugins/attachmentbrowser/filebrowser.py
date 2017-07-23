@@ -321,7 +321,7 @@ class FileBrowserIconView(gtk.IconView):
                 iconview.grab_focus()
                 popup_menu.popup(None, None, None, event.button, time)
                 self.do_populate_popup(popup_menu, pathinfo)
-                    # FIXME should use a signal here
+                # FIXME should use a signal here
                 return True
         return False
 

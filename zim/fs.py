@@ -296,7 +296,7 @@ def expanduser(path):
         # But also mbcs encoding does not handle all characters,
         # so only encode home part
         parts = path.replace('\\', '/').strip('/').split('/')
-            # parts[0] now is "~" or "~user"
+        # parts[0] now is "~" or "~user"
 
         if isinstance(path, unicode):
             part = parts[0].encode('mbcs')
@@ -345,9 +345,9 @@ def get_tmpdir():
     try:
         dir.touch(mode=0o700)  # Limit to single user
         os.chmod(dir.path, 0o700)  # Limit to single user when dir already existed
-            # Raises OSError if not allowed to chmod
+        # Raises OSError if not allowed to chmod
         os.listdir(dir.path)
-            # Raises OSError if we do not have access anymore
+        # Raises OSError if we do not have access anymore
     except OSError:
         raise AssertionError('Either you are not the owner of "%s" or the permissions are un-safe.\n'
                 'If you can not resolve this, try setting $TMP to a different location.' % dir.path)
@@ -487,7 +487,7 @@ class FileNotFoundError(PathLookupError):
     def __init__(self, file):
         self.file = file
         self.msg = _('No such file: %s') % file.path
-            # T: message for FileNotFoundError
+        # T: message for FileNotFoundError
 
 
 class FileUnicodeError(Error):
@@ -499,11 +499,11 @@ class FileUnicodeError(Error):
         self.file = file
         self.error = error
         self.msg = _('Could not read: %s') % file.path
-            # T: message for FileUnicodeError (%s is the file name)
+        # T: message for FileUnicodeError (%s is the file name)
         self.description = _('This usually means the file contains invalid characters')
-            # T: message for FileUnicodeError
+        # T: message for FileUnicodeError
         self.description += '\n\n' + _('Details') + ':\n' + unicode(error)
-            # T: label for detailed error
+        # T: label for detailed error
 
 
 # TODO actually hook the signal for deleting files and folders
@@ -587,10 +587,10 @@ class UnixPath(object):
         try:
             if isinstance(path, (list, tuple)):
                 path = map(unicode, path)
-                        # Flatten objects - strings should be unicode or ascii already
+                # Flatten objects - strings should be unicode or ascii already
                 path = os.path.sep.join(path)
-                        # os.path.join is too intelligent for it's own good
-                        # just join with the path separator.
+                # os.path.join is too intelligent for it's own good
+                # just join with the path separator.
             else:
                 path = unicode(path)  # make sure we can decode
         except UnicodeDecodeError:
@@ -647,7 +647,7 @@ class UnixPath(object):
         #~ if self.isdir():
         yield Dir(self.path)
         #~ else:
-            #~ yield self
+        #~ yield self
 
     def __str__(self):
         return self.path
@@ -1506,9 +1506,9 @@ class UnixFile(FilePath):
                 content = file.read()
                 self._checkoverwrite(content)
                 return content.lstrip(u'\ufeff').replace('\r', '').replace('\x00', '')
-                    # Strip unicode byte order mark
-                    # Internally we use Unix line ends - so strip out \r
-                    # And remove any NULL byte since they screw up parsing
+                # Strip unicode byte order mark
+                # Internally we use Unix line ends - so strip out \r
+                # And remove any NULL byte since they screw up parsing
             except IOError:
                 raise FileNotFoundError(self)
             except UnicodeDecodeError as error:
@@ -1529,9 +1529,9 @@ class UnixFile(FilePath):
                 lines = file.readlines()
                 self._checkoverwrite(lines)
                 return [line.lstrip(u'\ufeff').replace('\r', '').replace('\x00', '') for line in lines]
-                    # Strip unicode byte order mark
-                    # Internally we use Unix line ends - so strip out \r
-                    # And remove any NULL byte since they screw up parsing
+                # Strip unicode byte order mark
+                # Internally we use Unix line ends - so strip out \r
+                # And remove any NULL byte since they screw up parsing
             except IOError:
                 raise FileNotFoundError(self)
             except UnicodeDecodeError as error:
@@ -1551,7 +1551,7 @@ class UnixFile(FilePath):
         with self._lock:
             self._assertoverwrite()
             self._isnew = not os.path.isfile(self.encodedpath)
-                # Put this check here because here we are sure to have a lock
+            # Put this check here because here we are sure to have a lock
             endofline = self.get_endofline()
             if endofline != '\n':
                 text = text.replace('\n', endofline)
@@ -1580,7 +1580,7 @@ class UnixFile(FilePath):
         with self._lock:
             self._assertoverwrite()
             self._isnew = not os.path.isfile(self.encodedpath)
-                # Put this check here because here we are sure to have a lock
+            # Put this check here because here we are sure to have a lock
             endofline = self.get_endofline()
             if endofline != '\n':
                 lines = [line.replace('\n', endofline) for line in lines]
@@ -1621,7 +1621,7 @@ class UnixFile(FilePath):
                 logger.warn('mtime check failed for %s, trying md5', self.path)
                 if self._md5 != _md5(self.open('r').read()):
                     raise FileWriteError(_('File changed on disk: %s') % self.path)
-                            # T: error message
+                    # T: error message
                     # Why are we using MD5 here ?? could just compare content...
 
     def check_has_changed_on_disk(self):
@@ -1763,7 +1763,7 @@ class WindowsFile(UnixFile):
         new = self.encodedpath + '.zim-new~'
         return os.path.isfile(self.encodedpath) or \
                 (os.path.isfile(new) and os.path.isfile(orig))
-            # if both new and orig exists, we can recover
+        # if both new and orig exists, we can recover
 
     def open(self, mode='r'):
         self._recover()  # just to be sure
@@ -1936,7 +1936,7 @@ else:
 
         try:
             attrs = ctypes.windll.kernel32.GetFileAttributesW(file.path)
-                # note: GetFileAttributesW is unicode version of GetFileAttributes
+            # note: GetFileAttributesW is unicode version of GetFileAttributes
         except AttributeError:
             return False
         else:

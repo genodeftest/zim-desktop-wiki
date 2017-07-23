@@ -147,20 +147,20 @@ class TestTextBuffer(tests.TestCase, TestCaseMixin):
         with FilterNoSuchImageWarning():
             buffer.set_parsetree(raw1)
         self.assertEqual(raw1.tostring(), raw)
-            # If this fails, set_parsetree is modifying the tree
+        # If this fails, set_parsetree is modifying the tree
         raw2 = buffer.get_parsetree(raw=True)
         self.assertEqual(raw2.tostring(), raw)
-            # Actual cooked roundtrip test
+        # Actual cooked roundtrip test
 
         # Compare we are stable when loading cooked tree again
         #~ cooked = result1.tostring()
         #~ with FilterNoSuchImageWarning():
-            #~ buffer.set_parsetree(result1)
+        #~ buffer.set_parsetree(result1)
         #~ self.assertEqual(result1.tostring(), cooked)
-            #~ # If this fails, set_parsetree is modifying the tree
+        #~ # If this fails, set_parsetree is modifying the tree
         #~ result2 = buffer.get_parsetree()
         #~ self.assertEqual(result2.tostring(), cooked)
-            # Actual cooked roundtrip test
+        # Actual cooked roundtrip test
 
         # Test 'raw' really preserves "errors"
         input = '''\
@@ -403,11 +403,11 @@ Tja
 </zim-tree>'''
         buffer.toggle_checkbox(2, recursive=True)  # Bar
         buffer.toggle_checkbox(3, recursive=True)  # Bar 1
-            # After first click all children become checked
-            # After second click one becomes xchecked
+        # After first click all children become checked
+        # After second click one becomes xchecked
         buffer.place_cursor(buffer.get_iter_at_line(1))  # Foo
         buffer.toggle_checkbox_for_cursor_or_selection(XCHECKED_BOX)
-            # Like <Shift><F12> on first list item line
+        # Like <Shift><F12> on first list item line
         tree = buffer.get_parsetree(raw=True)
         self.assertEqual(tree.tostring(), wanted)
 
@@ -428,7 +428,7 @@ Tja
         end.forward_to_line_end()
         buffer.select_range(start, end)
         buffer.toggle_checkbox_for_cursor_or_selection(CHECKED_BOX, recursive=True)
-            # Like keypress would trigger while selection present
+        # Like keypress would trigger while selection present
         tree = buffer.get_parsetree(raw=True)
         self.assertEqual(tree.tostring(), wanted)
 
@@ -518,8 +518,8 @@ class TestUndoStackManager(tests.TestCase):
 
         with FilterNoSuchImageWarning():
             buffer._insert_element_children(tree._etree.getroot())
-                # Use private method to circumvent begin-insert-tree
-                # signal etc. so we get undo stack for inserting
+            # Use private method to circumvent begin-insert-tree
+            # signal etc. so we get undo stack for inserting
 
         # First test is to check we have a continuous undo stack after
         # inserting a parse tree. Nota bene, if this test fails, the
@@ -530,9 +530,9 @@ class TestUndoStackManager(tests.TestCase):
         #~ undomanager.flush_insert()
         #~ def tostring(data):
             #~ if hasattr(data, 'tostring'):
-                #~ return data.tostring()[39:]
+            #~ return data.tostring()[39:]
             #~ else:
-                #~ return data.get_property('name')
+            #~ return data.get_property('name')
         i = 0
         for group in undomanager.stack + [undomanager.group]:
             #~ pprint.pprint(
@@ -1359,7 +1359,7 @@ class TestTextView(tests.TestCase, TestCaseMixin):
         press(view, 'aaa\n')
         start, end = buffer.get_bounds()
         self.assertEqual(buffer.get_text(start, end), 'aaa\n')
-            # Just checking test routines work
+        # Just checking test routines work
 
         # Test bullet & indenting logic
         press(view, '* foo')
@@ -1642,7 +1642,7 @@ foo
                 '<?xml version=\'1.0\' encoding=\'utf-8\'?>\n<zim-tree><link href="wp?foobar">wp?foobar</link></zim-tree>')
 
         page = tests.new_page_from_text('[[~//bar.txt]]')
-            # Extra '/' is in there to verify path gets parsed as File object
+        # Extra '/' is in there to verify path gets parsed as File object
         pageview.set_page(page)
         wanted = '~/bar.txt' if os.name != 'nt' else '~\\bar.txt'
         click(_('Copy _Link'))

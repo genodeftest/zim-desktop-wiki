@@ -77,12 +77,12 @@ DATADIR = os.path.abspath(os.path.join(mydir, 'data'))
 
 # get our own tmpdir
 TMPDIR = os.path.abspath(os.path.join(mydir, 'tmp'))
-    # Wanted to use tempfile.get_tempdir here to put everything in
-    # e.g. /tmp/zim but since /tmp is often mounted as special file
-    # system this conflicts with thrash support. For writing in source
-    # dir we have conflict with bazaar controls, this is worked around
-    # by a config mode switch in the bazaar backend of the version
-    # control plugin
+# Wanted to use tempfile.get_tempdir here to put everything in
+# e.g. /tmp/zim but since /tmp is often mounted as special file
+# system this conflicts with thrash support. For writing in source
+# dir we have conflict with bazaar controls, this is worked around
+# by a config mode switch in the bazaar backend of the version
+# control plugin
 if os.name == 'nt':
     TMPDIR = unicode(TMPDIR)
 else:
@@ -160,7 +160,7 @@ class TestLoggingHandler(logging.Handler):
             pass
 
 logging.getLogger().addHandler(TestLoggingHandler())
-    # Handle all errors that make it up to the root level
+# Handle all errors that make it up to the root level
 
 try:
     logging.getLogger('zim.test').warning('foo')
@@ -669,7 +669,7 @@ def new_notebook(fakedir=None):
 
     #~ print ">>>>>>>>>>>>>"
     #~ for path in folder._fs.tree():
-        #~ print path
+    #~ print path
 
     layout = FilesLayout(folder, endofline='unix')
     index = Index(':memory:', layout)
@@ -898,8 +898,8 @@ def gtk_get_menu_item(menu, id):
     '''
     items = menu.get_children()
     ids = [i.get_property('label') for i in items]
-        # gtk.ImageMenuItems that have a stock id happen to use the
-        # 'label' property to store it...
+    # gtk.ImageMenuItems that have a stock id happen to use the
+    # 'label' property to store it...
 
     assert id in ids, \
             'Menu item "%s" not found, we got:\n' % id \

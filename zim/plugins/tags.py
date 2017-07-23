@@ -347,7 +347,7 @@ class TagCloudItem(gtk.ToggleButton):
                 label.set_markup('<b>' + label.get_text() + '</b>')
             else:
                 label.set_text(label.get_text())
-                    # get_text() gives string without markup
+                # get_text() gives string without markup
 
         self.connect_after('toggled', update_label)
 

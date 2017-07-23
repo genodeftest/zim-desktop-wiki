@@ -78,7 +78,7 @@ class PreferencesDialog(Dialog):
         # Plugins tab
         self.plugins_tab = PluginsTab(self, self.ui.plugins)
         plugins_tab_index = gtknotebook.append_page(self.plugins_tab, gtk.Label(_('Plugins')))
-                # T: Heading in preferences dialog
+        # T: Heading in preferences dialog
         self.plugins_tab.show()
         #~ print default_tab, index
         if default_tab == "Plugins":
@@ -88,7 +88,7 @@ class PreferencesDialog(Dialog):
 
         # Applications tab
         gtknotebook.append_page(ApplicationsTab(self), gtk.Label(_('Applications')))
-            # T: Heading in preferences dialog
+        # T: Heading in preferences dialog
 
     def _add_font_selection(self, table):
         # need to hardcode this, cannot register it as a preference
@@ -366,10 +366,10 @@ class PluginsTreeView(BrowserTreeView):
         cellrenderer.connect('toggled', lambda o, p: model.do_toggle_path(p))
         self.append_column(
                 gtk.TreeViewColumn(_('Enabled'), cellrenderer, active=1, activatable=2))
-            # T: Column in plugin tab
+        # T: Column in plugin tab
         self.append_column(
                 gtk.TreeViewColumn(_('Plugin'), gtk.CellRendererText(), text=3))
-            # T: Column in plugin tab
+        # T: Column in plugin tab
 
 
 class PluginConfigureDialog(Dialog):
@@ -381,7 +381,7 @@ class PluginConfigureDialog(Dialog):
         label = gtk.Label()
         label.set_markup(
                 '<b>' + _('Options for plugin %s') % plugin.plugin_info['name'] + '</b>')
-            # T: Heading for 'configure plugin' dialog - %s is the plugin name
+        # T: Heading for 'configure plugin' dialog - %s is the plugin name
         self.vbox.add(label)
 
         fields = []
@@ -420,7 +420,7 @@ class ApplicationsTab(gtk.VBox):
         self.dialog = dialog
 
         button = gtk.Button(_('Set default text editor'))
-            # T: button in preferences dialog to change default text editor
+        # T: button in preferences dialog to change default text editor
         button.connect('clicked', self.on_set_texteditor)
 
         self.pack_start(button, False)

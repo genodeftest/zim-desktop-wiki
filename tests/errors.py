@@ -169,7 +169,7 @@ class TestExceptionHandler(tests.TestCase):
             self.assertIsNotNone(records[0].exc_info)
 
             self.assertIn('/some/non/existing/file/', records[1].getMessage())
-                # do not test exact message - could be localized
+            # do not test exact message - could be localized
             self.assertEqual(records[1].levelno, logging.ERROR)
             self.assertIsNone(records[1].exc_info)
         else:

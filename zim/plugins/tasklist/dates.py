@@ -134,7 +134,7 @@ class Month(DateRange):
         self.year = year
         self.month = month
         self.first_day = datetime.date(year, month, 1)
-            # ensures year and month are actually valid
+        # ensures year and month are actually valid
 
     @property
     def last_day(self):

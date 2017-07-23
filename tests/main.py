@@ -131,7 +131,7 @@ class TestGui(tests.TestCase):
 
         window2 = cmd.run()
         self.assertIs(window2, window)
-            # Ensure repeated calling gives unique window
+        # Ensure repeated calling gives unique window
 
     # TODO
     # Check default notebook
@@ -203,7 +203,7 @@ class TestIPC(tests.TestCase):
         self.addCleanup(zim.main.ipc._close_listener)
 
         self.assertRaises(AssertionError, zim.main.ipc.dispatch, 'test', '123')
-            # raises due to sanity check same process
+        # raises due to sanity check same process
 
         zim.main.ipc.set_in_main_process(False)  # overrule sanity check
         t = threading.Thread(target=zim.main.ipc.dispatch, args=('test', '123'))

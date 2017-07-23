@@ -162,7 +162,7 @@ class PluginManager(ConnectorMixin, collections.Mapping):
 
     def __iter__(self):
         return iter(sorted(self._plugins.keys()))
-                # sort to make operation predictable - easier debugging
+        # sort to make operation predictable - easier debugging
 
     def __len__(self):
         return len(self._plugins)
@@ -699,7 +699,7 @@ class ObjectExtension(SignalEmitter, ConnectorMixin):
             pass
 
         self.plugin.extensions.discard(self)
-            # HACK avoid waiting for garbage collection to take place
+        # HACK avoid waiting for garbage collection to take place
 
     def teardown(self):
         '''Remove changes made by B{this} class from the extended object

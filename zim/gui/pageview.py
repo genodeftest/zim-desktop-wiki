@@ -128,7 +128,7 @@ CHECKBOXES = (UNCHECKED_BOX, CHECKED_BOX, XCHECKED_BOX, MIGRATED_BOX)
 
 NUMBER_BULLET = '#.'  # Special case for autonumbering
 is_numbered_bullet_re = re.compile('^(\d+|\w|#)\.$')
-    #: This regular expression is used to test whether a bullet belongs to a numbered list or not
+#: This regular expression is used to test whether a bullet belongs to a numbered list or not
 
 # Check the (undocumented) list of constants in gtk.keysyms to see all names
 KEYVALS_HOME = map(gtk.gdk.keyval_from_name, ('Home', 'KP_Home'))
@@ -651,7 +651,7 @@ class TextBuffer(gtk.TextBuffer):
 
         if True:  # not self._renumbering:
             lines = list(self._check_renumber)
-                # copy to avoid infinite loop when updating bullet triggers new delete
+            # copy to avoid infinite loop when updating bullet triggers new delete
             self._renumbering = True
             for line in lines:
                 self.renumber_list(line)
@@ -807,7 +807,7 @@ class TextBuffer(gtk.TextBuffer):
     def do_end_insert_tree(self):
         self._insert_tree_in_progress = False
         self.emit('textstyle-changed', self.get_textstyle())
-            # emitting textstyle-changed is skipped while loading the tree
+        # emitting textstyle-changed is skipped while loading the tree
 
     def _insert_element_children(self, node, list_level=-1, list_type=None, list_start='0', raw=False):
         # FIXME should load list_level from cursor position
@@ -835,9 +835,9 @@ class TextBuffer(gtk.TextBuffer):
                     return  # Re-use tag
 
             tag = self._get_indent_tag(level, bullet)
-                # We don't set the LTR / RTL direction here
-                # instead we update all indent tags after the full
-                # insert is done.
+            # We don't set the LTR / RTL direction here
+            # instead we update all indent tags after the full
+            # insert is done.
             self._editmode_tags += (tag,)
 
         def force_line_start():
@@ -2023,7 +2023,7 @@ class TextBuffer(gtk.TextBuffer):
         # Note: looks like parent call modified the position of the TextIter object
         # since it is still valid and now matched the end of the inserted string
         length = len(unicode(string))
-            # default function argument gives byte length :S
+        # default function argument gives byte length :S
         start = iter.copy()
         start.backward_chars(length)
         self.remove_all_tags(start, iter)
@@ -3582,7 +3582,7 @@ class TextView(gtk.TextView):
         if text_window:
             width, height = text_window.get_geometry()[2:4]
             hmargin = self.get_left_margin() + self.get_right_margin() + 5
-                # the +5 is arbitrary, but without it we show a scrollbar anyway ..
+            # the +5 is arbitrary, but without it we show a scrollbar anyway ..
             return width - hmargin, -1
         else:
             return 500, -1  # arbitrary default
@@ -3956,8 +3956,8 @@ class TextView(gtk.TextView):
                     handled = False
             elif event.keyval in KEYVALS_LEFT_TAB:
                 decrement_indent(start, end)
-                    # do not set handled = False when decrement failed -
-                    # LEFT_TAB should not do anything else
+                # do not set handled = False when decrement failed -
+                # LEFT_TAB should not do anything else
             elif event.keyval in KEYVALS_BACKSPACE \
             and self.preferences['unindent_on_backspace']:
                 handled = decrement_indent(start, end)
@@ -4454,9 +4454,9 @@ class UndoStackManager:
                 self.__class__.clear, self)
 
         #~ self.buffer.connect_object('edit-textstyle-changed',
-            #~ self.__class__._flush_if_typing, self)
+        #~ self.__class__._flush_if_typing, self)
         #~ self.buffer.connect_object('set-mark',
-            #~ self.__class__._flush_if_typing, self)
+        #~ self.__class__._flush_if_typing, self)
 
     def block(self):
         '''Stop listening to events from the L{TextBuffer} until
@@ -4696,7 +4696,7 @@ class UndoStackManager:
                 with self.buffer.user_action:
                     self.buffer.delete(iter, bound)
                     self.buffer._check_renumber = []
-                        # Flush renumber check - HACK to avoid messing up the stack
+                    # Flush renumber check - HACK to avoid messing up the stack
                 if tree.tostring() != data.tostring():
                     logger.warn('Mismatch in undo stack\n%s\n%s\n', tree.tostring(), data.tostring())
             elif action == self.ACTION_APPLY_TAG:
@@ -4853,14 +4853,14 @@ class SavePageErrorDialog(ErrorDialog):
 
     def __init__(self, pageview, error, page, timeout=False):
         msg = _('Could not save page: %s') % page.name
-            # T: Heading of error dialog
+        # T: Heading of error dialog
         desc = unicode(error).encode('utf-8').strip() \
                         + '\n\n' \
                         + _('''\
 To continue you can save a copy of this page or discard
 any changes. If you save a copy changes will be also
 discarded, but you can restore the copy later.''')
-            # T: text in error dialog when saving page failed
+        # T: text in error dialog when saving page failed
         ErrorDialog.__init__(self, pageview, (msg, desc), buttons=gtk.BUTTONS_NONE)
 
         self.timeout = timeout
@@ -4882,7 +4882,7 @@ discarded, but you can restore the copy later.''')
         def discard(self):
             page.set_ui_object(None)  # unhook
             pageview.clear()
-                # issue may be caused in pageview - make sure it unlocks
+            # issue may be caused in pageview - make sure it unlocks
             page._parsetree = None  # removed cached tree
             page.modified = False
             pageview.set_page(page)
@@ -4894,12 +4894,12 @@ discarded, but you can restore the copy later.''')
                 discard(self)
 
         discard_button = gtk.Button(_('_Discard Changes'))
-            # T: Button in error dialog
+        # T: Button in error dialog
         discard_button.connect_object('clicked', discard, self)
         self.add_action_widget(discard_button, gtk.RESPONSE_OK)
 
         save_button = Button(label=_('_Save Copy'), stock=gtk.STOCK_SAVE_AS)
-            # T: Button in error dialog
+        # T: Button in error dialog
         save_button.connect_object('clicked', save, self)
         self.add_action_widget(save_button, gtk.RESPONSE_OK)
 
@@ -5112,8 +5112,8 @@ class PageView(gtk.VBox):
 
         self.text_style['TextView'].setdefault('indent', TextBuffer.pixels_indent)
         self.text_style['TextView'].setdefault('tabs', None, int)
-            # Don't set a default for 'tabs' as not to break pages that
-            # were created before this setting was introduced.
+        # Don't set a default for 'tabs' as not to break pages that
+        # were created before this setting was introduced.
         self.text_style['TextView'].setdefault('linespacing', 3)
         self.text_style['TextView'].setdefault('font', None, basestring)
         self.text_style['TextView'].setdefault('justify', None, basestring)
@@ -5123,8 +5123,8 @@ class PageView(gtk.VBox):
         if self.text_style['TextView']['tabs']:
             tabarray = pango.TabArray(1, True)  # Initial size, position in pixels
             tabarray.set_tab(0, pango.TAB_LEFT, self.text_style['TextView']['tabs'])
-                # We just set the size for one tab, apparently this gets
-                # copied automaticlly when a new tab is created by the textbuffer
+            # We just set the size for one tab, apparently this gets
+            # copied automaticlly when a new tab is created by the textbuffer
             self.view.set_tabs(tabarray)
 
         if self.text_style['TextView']['linespacing']:
@@ -5578,9 +5578,9 @@ class PageView(gtk.VBox):
         assert isinstance(link, dict)
         href = link['href']
         href = normalize_file_uris(href)
-            # can translate file:// -> smb:// so do before link_type()
-            # FIXME implement function in notebook to resolve any link
-            #       type and take care of this stuff ?
+        # can translate file:// -> smb:// so do before link_type()
+        # FIXME implement function in notebook to resolve any link
+        #       type and take care of this stuff ?
         type = link_type(href)
         logger.debug('Link clicked: %s: %s' % (type, link['href']))
 
@@ -5676,14 +5676,14 @@ class PageView(gtk.VBox):
         item.set_submenu(copy_as_menu)
         item.show_all()
         menu.insert(item, 2)  # position after Copy in the standard menu - may not be robust...
-            # FIXME get code from test to seek stock item
+        # FIXME get code from test to seek stock item
 
         ### Move text to new page ###
         item = gtk.MenuItem(_('Move Selected Text...'))
-            # T: Context menu item for pageview to move selected text to new/other page
+        # T: Context menu item for pageview to move selected text to new/other page
         item.show_all()  # FIXME should not be needed here
         menu.insert(item, 7)  # position after Copy in the standard menu - may not be robust...
-            # FIXME get code from test to seek stock item
+        # FIXME get code from test to seek stock item
 
         if buffer.get_has_selection():
             item.connect('activate',
@@ -5693,8 +5693,8 @@ class PageView(gtk.VBox):
         ###
 
         iter = buffer.get_iter_at_mark(buffer.get_mark('zim-popup-menu'))
-            # This iter can be either cursor position or pointer
-            # position, depending on how the menu was called
+        # This iter can be either cursor position or pointer
+        # position, depending on how the menu was called
         link = buffer.get_link_data(iter)
         if link:
             type = link_type(link['href'])
@@ -5779,7 +5779,7 @@ class PageView(gtk.VBox):
         # open with & open folder
         if type in ('file', 'image') and file:
             item = gtk.MenuItem(_('Open Folder'))
-                # T: menu item to open containing folder of files
+            # T: menu item to open containing folder of files
             menu.prepend(item)
             dir = file.dir
             if dir.exists():
@@ -5788,7 +5788,7 @@ class PageView(gtk.VBox):
                 item.set_sensitive(False)
 
             item = gtk.MenuItem(_('Open With...'))
-                # T: menu item for sub menu with applications
+            # T: menu item for sub menu with applications
             menu.prepend(item)
             if file.exists():
                 submenu = OpenWithMenu(self.ui, file)
@@ -5809,7 +5809,7 @@ class PageView(gtk.VBox):
         # open in new window
         if type == 'page':
             item = gtk.MenuItem(_('Open in New _Window'))
-                # T: menu item to open a link
+            # T: menu item to open a link
             item.connect(
                     'activate', lambda o: self.do_link_clicked(link, new_window=True))
             menu.prepend(item)
@@ -5819,7 +5819,7 @@ class PageView(gtk.VBox):
             link = {'href': file.uri}
 
         item = gtk.MenuItem(_('_Open'))
-            # T: menu item to open a link or file
+        # T: menu item to open a link or file
         if file and not file.exists():
             item.set_sensitive(False)
         else:
@@ -6131,14 +6131,14 @@ class PageView(gtk.VBox):
                         name, x = name.rsplit('.', 1)
                     name = name.replace('_', ' ')
                     item = gtk.MenuItem(name)
-                        # TODO mimetype icon would be nice to have
+                    # TODO mimetype icon would be nice to have
                     item.connect('activate', handler, file)
                     item.zim_new_file_action = True
                     items.append(item)
 
         if not items:
             item = gtk.MenuItem(_('No templates installed'))
-                # T: message when no file templates are found in ~/Templates
+            # T: message when no file templates are found in ~/Templates
             item.set_sensitive(False)
             item.zim_new_file_action = True
             items.append(item)
@@ -6202,7 +6202,7 @@ class PageView(gtk.VBox):
                     _('The folder\n%s\ndoes not yet exist.\nDo you want to create it now?')
                             % path
             )
-                    # T: Text in a question dialog for creating a folder, %s is the folder path
+            # T: Text in a question dialog for creating a folder, %s is the folder path
             create = QuestionDialog(self, question).run()
             if create:
                 dir.touch()
@@ -6457,7 +6457,7 @@ class InsertDateDialog(Dialog):
         from zim.plugins.calendar import Calendar  # FIXME put this in zim.gui.widgets
 
         self.calendar_expander = gtk.expander_new_with_mnemonic('<b>' + _("_Calendar") + '</b>')
-            # T: expander label in "insert date" dialog
+        # T: expander label in "insert date" dialog
         self.calendar_expander.set_use_markup(True)
         self.calendar_expander.set_expanded(self.uistate['calendar_expanded'])
         self.calendar = Calendar()
@@ -6471,7 +6471,7 @@ class InsertDateDialog(Dialog):
 
         # Add Link checkbox and Edit button
         self.linkbutton = gtk.CheckButton(_('_Link to date'))
-            # T: check box in InsertDate dialog
+        # T: check box in InsertDate dialog
         self.linkbutton.set_active(self.uistate['linkdate'])
         self.vbox.pack_start(self.linkbutton, False)
 
@@ -6564,7 +6564,7 @@ class InsertImageDialog(FileDialog):
     def __init__(self, ui, buffer, notebook, path, file=None):
         FileDialog.__init__(
                 self, ui, _('Insert Image'), gtk.FILE_CHOOSER_ACTION_OPEN)
-            # T: Dialog title
+        # T: Dialog title
 
         self.buffer = buffer
         self.notebook = notebook
@@ -6577,7 +6577,7 @@ class InsertImageDialog(FileDialog):
         self.add_filter_images()
 
         checkbox = gtk.CheckButton(_('Attach image first'))
-            # T: checkbox in the "Insert Image" dialog
+        # T: checkbox in the "Insert Image" dialog
         checkbox.set_active(self.uistate['attach_inserted_images'])
         self.filechooser.set_extra_widget(checkbox)
 
@@ -6593,7 +6593,7 @@ class InsertImageDialog(FileDialog):
 
         if not gtk.gdk.pixbuf_get_file_info(file.path):
             ErrorDialog(self, _('File type not supported: %s' % file.get_mimetype())).run()
-                # T: Error message when trying to insert a not supported file as image
+            # T: Error message when trying to insert a not supported file as image
             return False
 
         self.save_last_folder()
@@ -6645,10 +6645,10 @@ class EditImageDialog(Dialog):
                 # range for width and height are set in set_ranges()
         )
         self.form.widgets['file'].set_use_relative_paths(ui.notebook, path)
-            # Show relative paths
+        # Show relative paths
 
         reset_button = gtk.Button(_('_Reset Size'))
-            # T: Button in 'edit image' dialog
+        # T: Button in 'edit image' dialog
         hbox = gtk.HBox()
         hbox.pack_end(reset_button, False)
         self.vbox.add(hbox)
@@ -6656,7 +6656,7 @@ class EditImageDialog(Dialog):
         reset_button.connect_object('clicked',
                 self.__class__.reset_dimensions, self)
         #~ self.form.widgets['file'].connect_object('activate',
-            #~ self.__class__.reset_dimensions, self)
+        #~ self.__class__.reset_dimensions, self)
         self.form.widgets['width'].connect_object('value-changed',
                 self.__class__.do_width_changed, self)
         self.form.widgets['height'].connect_object('value-changed',
@@ -6745,7 +6745,7 @@ class InsertTextFromFileDialog(FileDialog):
     def __init__(self, ui, buffer, notebook, page):
         FileDialog.__init__(
                 self, ui, _('Insert Text From File'), gtk.FILE_CHOOSER_ACTION_OPEN)
-            # T: Dialog title
+        # T: Dialog title
         self.load_last_folder()
         self.add_shortcut(notebook, page)
         self.buffer = buffer
@@ -6811,9 +6811,9 @@ class InsertLinkDialog(Dialog):
             start, end = buffer.get_selection_bounds()
             text = buffer.get_text(start, end)
             self._selection_bounds = (start.get_offset(), end.get_offset())
-                # Interaction in the dialog causes buffer to loose selection
-                # maybe due to clipboard focus !??
-                # Anyway, need to remember bounds ourselves.
+            # Interaction in the dialog causes buffer to loose selection
+            # maybe due to clipboard focus !??
+            # Anyway, need to remember bounds ourselves.
             if link:
                 href = link['href']
                 self._selected_text = False
@@ -6882,34 +6882,34 @@ class FindWidget(object):
                 'activate', self.__class__.on_find_entry_activate, self)
 
         self.next_button = Button(_('_Next'), gtk.STOCK_GO_FORWARD)
-            # T: button in find bar and find & replace dialog
+        # T: button in find bar and find & replace dialog
         self.next_button.connect_object(
                 'clicked', self.__class__.find_next, self)
         self.next_button.set_sensitive(False)
 
         self.previous_button = Button(_('_Previous'), gtk.STOCK_GO_BACK)
-            # T: button in find bar and find & replace dialog
+        # T: button in find bar and find & replace dialog
         self.previous_button.connect_object(
                 'clicked', self.__class__.find_previous, self)
         self.previous_button.set_sensitive(False)
 
         self.case_option_checkbox = gtk.CheckButton(_('Match _case'))
-            # T: checkbox option in find bar and find & replace dialog
+        # T: checkbox option in find bar and find & replace dialog
         self.case_option_checkbox.connect_object(
                 'toggled', self.__class__.on_find_entry_changed, self)
 
         self.word_option_checkbox = gtk.CheckButton(_('Whole _word'))
-            # T: checkbox option in find bar and find & replace dialog
+        # T: checkbox option in find bar and find & replace dialog
         self.word_option_checkbox.connect_object(
                 'toggled', self.__class__.on_find_entry_changed, self)
 
         self.regex_option_checkbox = gtk.CheckButton(_('_Regular expression'))
-            # T: checkbox option in find bar and find & replace dialog
+        # T: checkbox option in find bar and find & replace dialog
         self.regex_option_checkbox.connect_object(
                 'toggled', self.__class__.on_find_entry_changed, self)
 
         self.highlight_checkbox = gtk.CheckButton(_('_Highlight'))
-            # T: checkbox option in find bar and find & replace dialog
+        # T: checkbox option in find bar and find & replace dialog
         self.highlight_checkbox.connect_object(
                 'toggled', self.__class__.on_highlight_toggled, self)
 
@@ -6995,7 +6995,7 @@ class FindBar(FindWidget, gtk.HBox):
         FindWidget.__init__(self, textview)
 
         self.pack_start(gtk.Label(_('Find') + ': '), False)
-            # T: label for input in find bar on bottom of page
+        # T: label for input in find bar on bottom of page
         self.pack_start(self.find_entry, False)
         self.pack_start(self.previous_button, False)
         self.pack_start(self.next_button, False)
@@ -7076,7 +7076,7 @@ class FindAndReplaceDialog(FindWidget, Dialog):
         hbox.pack_start(vbox, False)
 
         label = gtk.Label(_('Find what') + ': ')
-            # T: input label in find & replace dialog
+        # T: input label in find & replace dialog
         label.set_alignment(0.0, 0.5)
         vbox.add(label)
         vbox.add(self.find_entry)
@@ -7086,7 +7086,7 @@ class FindAndReplaceDialog(FindWidget, Dialog):
         vbox.add(self.highlight_checkbox)
 
         label = gtk.Label(_('Replace with') + ': ')
-            # T: input label in find & replace dialog
+        # T: input label in find & replace dialog
         label.set_alignment(0.0, 0.5)
         vbox.add(label)
         self.replace_entry = InputEntry(allow_whitespace=True)
@@ -7098,12 +7098,12 @@ class FindAndReplaceDialog(FindWidget, Dialog):
         self.bbox.add(self.previous_button)
 
         replace_button = Button(_('_Replace'), gtk.STOCK_FIND_AND_REPLACE)
-            # T: Button in search & replace dialog
+        # T: Button in search & replace dialog
         replace_button.connect_object('clicked', self.__class__.replace, self)
         self.bbox.add(replace_button)
 
         all_button = Button(_('Replace _All'), gtk.STOCK_FIND_AND_REPLACE)
-            # T: Button in search & replace dialog
+        # T: Button in search & replace dialog
         all_button.connect_object('clicked', self.__class__.replace_all, self)
         self.bbox.add(all_button)
 
@@ -7227,7 +7227,7 @@ class MoveTextDialog(Dialog):
         assert self.text  # just to be sure
         start, end = buffer.get_selection_bounds()
         self.bounds = (start.get_offset(), end.get_offset())
-            # Save selection bounds - can get lost later :S
+        # Save selection bounds - can get lost later :S
 
         self.uistate.setdefault('link', True)
         self.uistate.setdefault('open_page', False)

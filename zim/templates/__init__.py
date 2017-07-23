@@ -117,11 +117,11 @@ def get_template(category, template):
             file = File(template)
             if not file.exists():
                 raise PathLookupError(_('Could not find template "%s"') % template)
-                    # T: Error message in template lookup
+                # T: Error message in template lookup
 
     if not file.exists():
         raise PathLookupError(_('No such file: %s') % file)
-            # T: Error message in template lookup
+        # T: Error message in template lookup
 
     logger.info('Loading template from: %s', file)
     #~ basename, ext = file.basename.rsplit('.', 1)

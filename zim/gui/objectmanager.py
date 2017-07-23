@@ -179,25 +179,25 @@ class FallbackObjectWidget(TextViewWidget):
 
         hbox = gtk.HBox(False, 5)
         label = gtk.Label(_("Plugin %s is required to display this object.") % name)
-            # T: Label for object manager
+        # T: Label for object manager
         hbox.pack_start(label)
 
         #~ if activatable: # and False:
-            # Plugin can be enabled
-            #~ button = gtk.Button(_("Enable plugin")) # T: Label for object manager
-            #~ def load_plugin(button):
-                #~ self.ui.plugins.load_plugin(key)
-                #~ self.ui.reload_page()
-            #~ button.connect("clicked", load_plugin)
+        # Plugin can be enabled
+        #~ button = gtk.Button(_("Enable plugin")) # T: Label for object manager
+        #~ def load_plugin(button):
+        #~ self.ui.plugins.load_plugin(key)
+        #~ self.ui.reload_page()
+        #~ button.connect("clicked", load_plugin)
         #~ else:
-            # Plugin has some unresolved dependencies
-            #~ button = gtk.Button(_("Show plugin details")) # T: Label for object manager
-            #~ def plugin_info(button):
-                #~ from zim.gui.preferencesdialog import PreferencesDialog
-                #~ dialog = PreferencesDialog(self.ui, "Plugins", select_plugin=name)
-                #~ dialog.run()
-                #~ self.ui.reload_page()
-            #~ button.connect("clicked", plugin_info)
+        # Plugin has some unresolved dependencies
+        #~ button = gtk.Button(_("Show plugin details")) # T: Label for object manager
+        #~ def plugin_info(button):
+        #~ from zim.gui.preferencesdialog import PreferencesDialog
+        #~ dialog = PreferencesDialog(self.ui, "Plugins", select_plugin=name)
+        #~ dialog.run()
+        #~ self.ui.reload_page()
+        #~ button.connect("clicked", plugin_info)
 
         #~ hbox.pack_start(button)
         self.vbox.pack_start(hbox)

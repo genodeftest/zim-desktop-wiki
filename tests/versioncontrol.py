@@ -192,9 +192,9 @@ class TestBazaar(VersionControlBackendTests, tests.TestCase):
         vcs.init()
 
         #~ for notebookdir in (root, root.subdir('foobar')):
-            #~ detected = VersionControlPlugin._detect_vcs(notebookdir)
-            #~ self.assertEqual(detected.__class__, BazaarVCS)
-            #~ del detected # don't keep multiple instances around
+        #~ detected = VersionControlPlugin._detect_vcs(notebookdir)
+        #~ self.assertEqual(detected.__class__, BazaarVCS)
+        #~ del detected # don't keep multiple instances around
 
         subdir = root.subdir('foo/bar')
         file = subdir.file('baz.txt')
@@ -212,7 +212,7 @@ added:
         self.assertRaises(NoChangesError, vcs.commit, 'test 1')
 
         ignorelines = lambda line: not (line.startswith('+++') or line.startswith('---'))
-            # these lines contain time stamps
+        # these lines contain time stamps
         diff = vcs.get_diff(versions=(0, 1))
         diff = ''.join(filter(ignorelines, diff))
         self.assertEqual(diff, '''\
@@ -326,9 +326,9 @@ class TestGit(VersionControlBackendTests, tests.TestCase):
         vcs.init()
 
         #~ for notebookdir in (root, root.subdir('foobar')):
-            #~ detected = VersionControlPlugin._detect_vcs(notebookdir)
-            #~ self.assertEqual(detected.__class__, BazaarVCS)
-            #~ del detected # don't keep multiple instances around
+        #~ detected = VersionControlPlugin._detect_vcs(notebookdir)
+        #~ self.assertEqual(detected.__class__, BazaarVCS)
+        #~ del detected # don't keep multiple instances around
 
         subdir = root.subdir('foo/bar')
         file = subdir.file('baz.txt')
@@ -503,9 +503,9 @@ class TestMercurial(VersionControlBackendTests, tests.TestCase):
         vcs.init()
 
         #~ for notebookdir in (root, root.subdir('foobar')):
-            #~ detected = VersionControlPlugin._detect_vcs(notebookdir)
-            #~ self.assertEqual(detected.__class__, BazaarVCS)
-            #~ del detected # don't keep multiple instances around
+        #~ detected = VersionControlPlugin._detect_vcs(notebookdir)
+        #~ self.assertEqual(detected.__class__, BazaarVCS)
+        #~ del detected # don't keep multiple instances around
 
         subdir = root.subdir('foo/bar')
         file = subdir.file('baz.txt')

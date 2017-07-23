@@ -32,7 +32,7 @@ ignore_functions = ('setdefault', 'connect', 'connect_after', 'connect_object', 
 class Internationalizer(gtk.Window):
 
     def __init__(self):
-    #~ def __init__(self, dir):
+        #~ def __init__(self, dir):
         gtk.Window.__init__(self)
         self.set_title('Internationalizer')
         self.set_default_size(500, 500)

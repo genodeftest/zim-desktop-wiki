@@ -186,8 +186,8 @@ class ConfigManagerINIConfigFile(INIConfigFile):
     def __init__(self, file):
         INIConfigFile.__init__(self, file, monitor=True)
         self.connect_after('changed', self.on_changed)
-            # autosave on changing the dict, connect after
-            # regular handlers to avoid getting stuck with a set
+        # autosave on changing the dict, connect after
+        # regular handlers to avoid getting stuck with a set
 
     @SignalHandler
     def on_changed(self, *a):

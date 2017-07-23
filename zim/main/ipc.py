@@ -58,8 +58,8 @@ _m = hashlib.md5()
 _m.update(zim.ZIM_EXECUTABLE)
 
 key = zim.__version__ + '-' + _m.hexdigest()[:8]
-    # Make name specific for the install location
-    # But don't worry about collisons, first few bytes should do it
+# Make name specific for the install location
+# But don't worry about collisons, first few bytes should do it
 
 if sys.platform == 'win32':
     # Windows named pipe
@@ -71,7 +71,7 @@ if sys.platform == 'win32':
 else:
     # Unix domain socket
     SERVER_ADDRESS = str(zim.fs.get_tmpdir().file('primary-%s' % key).path)
-            # BUG in multiprocess, name must be str instead of basestring
+    # BUG in multiprocess, name must be str instead of basestring
     SERVER_ADDRESS_FAMILY = 'AF_UNIX'
     Listener = SocketListener
 

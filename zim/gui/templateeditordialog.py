@@ -20,11 +20,11 @@ class TemplateEditorDialog(Dialog):
         Dialog.__init__(self, ui,
                 _('Templates'), help='Help:Templates', buttons=gtk.BUTTONS_CLOSE,
                 defaultwindowsize=(400, 450))
-                # T: Dialog title
+        # T: Dialog title
 
         label = gtk.Label()
         label.set_markup('<b>' + _('Templates') + '</b>')
-                # T: Section in dialog
+        # T: Section in dialog
         label.set_alignment(0.0, 0.5)
         self.vbox.pack_start(label, False)
 
@@ -174,7 +174,7 @@ class TemplateListView(BrowserTreeView):
     def __init__(self):
         BrowserTreeView.__init__(self)
         model = gtk.TreeStore(str, object, object)
-            # BASENAME_COL, FILE_COL, DEFAULT_COL
+        # BASENAME_COL, FILE_COL, DEFAULT_COL
         self.set_model(model)
         self.set_headers_visible(False)
 

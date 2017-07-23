@@ -165,7 +165,7 @@ class MainWindowExtension(WindowExtension):
             rc +=  '\tbase[%(state)s] = "%(base)s"\n' \
                     '\ttext[%(state)s] = "%(text)s"\n' \
                     '\tbg[%(state)s] = "%(bg)s"\n' % values
-                #'\tfg[%(state)s] = "%(fg)s"\n' % values
+            #'\tfg[%(state)s] = "%(fg)s"\n' % values
 
         #rc += '}\nclass "GtkWidget" style "zim-colors"'
         rc += '}\nwidget "*.zim-pageview" style "zim-colors"\n'

@@ -163,7 +163,7 @@ class TestPageEntry(tests.TestCase):
         entry.set_text('placeholder')
         self.assertTrue(entry.get_input_valid())
         self.assertEqual(entry.get_path(), Path('Placeholder'))
-                        # unlike links, we do use placeholders when resolving pages
+        # unlike links, we do use placeholders when resolving pages
 
         entry.set_text('non existing')
         self.assertTrue(entry.get_input_valid())

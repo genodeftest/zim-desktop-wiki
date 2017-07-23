@@ -109,7 +109,7 @@ class NotebookLookupError(Error):
     '''Error when failing to locate a notebook'''
 
     description = _('Could not find the file or folder for this notebook')
-        # T: Error verbose description
+    # T: Error verbose description
 
 
 class NotebookCommand(Command):
@@ -142,14 +142,14 @@ class NotebookCommand(Command):
         if notebook is None:
             if self.arguments[0] == 'NOTEBOOK':  # not optional
                 raise NotebookLookupError(_('Please specify a notebook'))
-                        # T: Error when looking up a notebook
+                # T: Error when looking up a notebook
             else:
                 return None, None
 
         notebookinfo = resolve_notebook(notebook, pwd=self.pwd)
         if not notebookinfo:
             raise NotebookLookupError(_('Could not find notebook: %s') % notebook)
-                # T: error message
+            # T: error message
 
         if len(self.arguments) > 1 \
         and self.arguments[1] in ('PAGE', '[PAGE]') \
@@ -209,7 +209,7 @@ class GuiCommand(NotebookCommand, GtkCommand):
         def prompt_notebook_list():
             import zim.gui.notebookdialog
             return zim.gui.notebookdialog.prompt_notebook()
-                # Can return None if dialog is cancelled
+            # Can return None if dialog is cancelled
 
         used_default = False
         page = None
@@ -283,7 +283,7 @@ class ManualCommand(GuiCommand):
 
     arguments = ('[PAGE]',)
     options = filter(lambda t: t[0] != 'list', GuiCommand.options)
-        # exclude --list
+    # exclude --list
 
     def run(self):
         from zim.config import data_dir
@@ -311,7 +311,7 @@ class ServerCommand(NotebookCommand):
         notebook, page = self.build_notebook()
 
         self.server = httpd = zim.www.make_server(notebook, public=True, **self.get_options('template', 'port'))
-            # server attribute used in testing to stop sever in thread
+        # server attribute used in testing to stop sever in thread
         logger.info("Serving HTTP on %s port %i...", httpd.server_name, httpd.server_port)
         httpd.serve_forever()
 
@@ -788,8 +788,8 @@ class ZimApplication(object):
         # Decouple from parent environment
         # and redirect standard file descriptors
         os.chdir(zim.fs.Dir('~').path)
-            # Using HOME because this folder will not disappear normally
-            # and because it is a sane starting point for file choosers etc.
+        # Using HOME because this folder will not disappear normally
+        # and because it is a sane starting point for file choosers etc.
 
         try:
             si = file(os.devnull, 'r')

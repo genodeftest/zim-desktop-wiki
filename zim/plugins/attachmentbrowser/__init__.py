@@ -84,7 +84,7 @@ icon view at bottom pane.
 
     #~ @classmethod
     #~ def check_dependencies(klass):
-            #~ return [("ImageMagick",Application(('convert',None)).tryexec())]
+    #~ return [("ImageMagick",Application(('convert',None)).tryexec())]
 
 
 @extends('MainWindow')
@@ -132,7 +132,7 @@ class AttachmentBrowserWindowExtension(WindowExtension):
         # Init browser widget
         opener = self.window.get_resource_opener()
         self.widget = AttachmentBrowserPluginWidget(self, opener, self.preferences)
-                # FIXME FIXME FIXME - get rid of ui object here
+        # FIXME FIXME FIXME - get rid of ui object here
 
         self.on_preferences_changed(plugin.preferences)
         self.connectto(plugin.preferences, 'changed', self.on_preferences_changed)
@@ -202,7 +202,7 @@ class AttachmentBrowserWindowExtension(WindowExtension):
         n = len(model)
         self.statusbar_button.set_label(
                 ngettext('%i _Attachment', '%i _Attachments', n) % n)
-            # T: Label for the statusbar, %i is the number of attachments for the current page
+        # T: Label for the statusbar, %i is the number of attachments for the current page
 
     def teardown(self):
         self.widget.iconview.teardown_folder()

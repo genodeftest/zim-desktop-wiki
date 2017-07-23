@@ -208,11 +208,11 @@ class ExpressionError(Error):
     description = _(
             'The inline calculator plugin was not able\n'
             'to evaluate the expression at the cursor.')
-        # T: error description
+    # T: error description
 
 
 _multiline_re = re.compile('--+\s+[+-]')
-    # for multiline summation with "--- +" and similar
+# for multiline summation with "--- +" and similar
 
 
 class InlineCalculatorPlugin(PluginClass):
@@ -230,7 +230,7 @@ This is a core plugin shipping with zim.
     }
 
     #~ plugin_preferences = (
-        # key, type, label, default
+    # key, type, label, default
     #~ )
 
     def process_text(self, text):
@@ -285,7 +285,7 @@ This is a core plugin shipping with zim.
                 break
         else:
             raise ExpressionError(_('Could not parse expression'))
-                # T: error message
+            # T: error message
 
         sep = ' %s ' % operator
         expression = sep.join('(%s)' % l for l in lines[:i])
@@ -324,7 +324,7 @@ class MainWindowExtension(WindowExtension):
         will look at the cursor for an expression to evaluate.
         '''
         buffer = self.window.pageview.view.get_buffer()
-            # XXX- way to long chain of objects here
+        # XXX- way to long chain of objects here
 
         # FIXME: what do we do for selections ?
 

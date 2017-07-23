@@ -43,7 +43,7 @@ def setupGtkInterface(test, klass=None, notebook=None):
     config = VirtualConfigManager()
     prefs = config.get_config_dict('<profile>/preferences.conf')
     prefs['General'].input(plugins=['calendar', 'insertsymbol', 'printtobrowser'])
-        # version control interferes with source folder, leave other default plugins
+    # version control interferes with source folder, leave other default plugins
 
     ui = klass(config=config, notebook=notebook)
 
@@ -687,7 +687,7 @@ class TestClickLink(tests.TestCase):
 
     def runTest(self):
         self.assertRaises(AssertionError, self.ui.open_url, 'foo@bar.com')
-            # this is not a URI, "mailto:foo@bar.com" is
+        # this is not a URI, "mailto:foo@bar.com" is
 
         # Note: same list of test uris is testing in tests.parsing as well
         for href, type in (

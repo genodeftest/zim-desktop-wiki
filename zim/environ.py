@@ -100,7 +100,7 @@ if os.name == 'nt':
 
 assert isdir(environ['HOME']), \
         'ERROR: environment variable $HOME not set correctly value is "%s"'
-    # using our own environ here to ensure encoding
+# using our own environ here to ensure encoding
 
 if not 'USER' in environ or not environ['USER']:
     # E.g. Maemo doesn't define $USER

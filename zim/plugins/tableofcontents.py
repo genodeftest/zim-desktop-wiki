@@ -120,7 +120,7 @@ class MainWindowExtensionEmbedded(WindowExtension):
 
         self.window.add_tab(
                 _('ToC'), self.widget, preferences['pane'])
-            # T: widget label
+        # T: widget label
         self.widget.show_all()
 
         self.widget.set_show_h1(preferences['show_h1'])
@@ -158,14 +158,14 @@ class ToCTreeView(BrowserTreeView):
         BrowserTreeView.__init__(self, ToCTreeModel())
         self.set_headers_visible(False)
         self.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
-            # Allow select multiple
+        # Allow select multiple
 
         cell_renderer = gtk.CellRendererText()
         if ellipsis:
             cell_renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn('_heading_', cell_renderer, text=TEXT_COL)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-            # Without this sizing, column width only grows and never shrinks
+        # Without this sizing, column width only grows and never shrinks
         self.append_column(column)
 
 
@@ -416,9 +416,9 @@ class FloatingToC(TableVBox, ConnectorMixin):
         self.widget = ToCWidget(ui, pageview, ellipsis=False)
         self.widget.set_shadow_type(gtk.SHADOW_NONE)
         self.widget.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
-            # Setting horizontal scroll automatic as well
-            # makes the scrollbars visible at all times once they are shown once
-            # custom control implemented below
+        # Setting horizontal scroll automatic as well
+        # makes the scrollbars visible at all times once they are shown once
+        # custom control implemented below
 
         self._head_event_box = gtk.EventBox()
         self._head_event_box.add(self.head)

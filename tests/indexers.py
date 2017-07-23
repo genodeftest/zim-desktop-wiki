@@ -286,10 +286,10 @@ class TestPagesIndexer(TestPagesDBTable, tests.TestCase):
         self.assertPagesDBEquals(db, [])
         self.assertEqual(signals['page-row-inserted'], [])
         self.assertEqual(set(signals['page-row-changed']), set(['foo']))
-                                         # "foo" has source that is deleted before children
+        # "foo" has source that is deleted before children
         self.assertEqual(set(signals['page-row-deleted']), set(self.PAGES))
         self.assertEqual(signals['page-changed'], ['foo'])
-                                         # "foo" has source that is deleted before children
+        # "foo" has source that is deleted before children
 
 
 from zim.utils import natural_sort_key
@@ -422,10 +422,10 @@ class TestFullIndexer(TestFilesIndexer):
     # no detailed assertions
 
     PAGE_TEXT = 'test 123\n[[foo:sub1]]\n[[sub1]]\n@tagfoo\n'
-        # link content choosen to have one link
-        # that resolves always and one link that
-        # resolves for some pages, but causes
-        # placeholder for other namespaces
+    # link content choosen to have one link
+    # that resolves always and one link that
+    # resolves for some pages, but causes
+    # placeholder for other namespaces
 
     def runTest(self):
         # Test in 3 parts:

@@ -181,9 +181,9 @@ def ScrolledWindow(widget, hpolicy=gtk.POLICY_AUTOMATIC, vpolicy=gtk.POLICY_AUTO
         vsize = 24
 
     window.set_size_request(hsize, vsize)
-        # scrolled widgets have at least this size...
-        # by setting this minimum widgets can not "disappear" when
-        # HPaned or VPaned bar is pulled all the way
+    # scrolled widgets have at least this size...
+    # by setting this minimum widgets can not "disappear" when
+    # HPaned or VPaned bar is pulled all the way
     return window
 
 
@@ -449,7 +449,7 @@ def input_table_factory(inputs, table=None):
             label = gtk.Label()
             label.set_markup(input)
             table.attach(label, 0, 4, i, i + 1)
-                # see column below about col span for single widget case
+            # see column below about col span for single widget case
         elif isinstance(input, tuple):
             text = input[0]
             if text:
@@ -471,10 +471,10 @@ def input_table_factory(inputs, table=None):
         else:
             widget = input
             table.attach(widget, 0, 4, i, i + 1)
-                # We span 4 columns here so in case these widgets are
-                # the widest in the tables (e.g. checkbox + label)
-                # they don't force expanded size on first 3 columns
-                # (e.g. label + entry + button).
+            # We span 4 columns here so in case these widgets are
+            # the widest in the tables (e.g. checkbox + label)
+            # they don't force expanded size on first 3 columns
+            # (e.g. label + entry + button).
         i += 1
 
     return table
@@ -648,10 +648,10 @@ class SingleClickTreeView(gtk.TreeView):
         and event.button == 1 and not event.state & self.mask \
         and not self.is_rubber_banding_active():
             x, y = map(int, event.get_coords())
-                # map to int to suppress deprecation warning :S
-                # note that get_coords() gives back (0, 0) when cursor
-                # is outside the treeview window (e.g. drag & drop that
-                # was started inside the tree - see bug lp:646987)
+            # map to int to suppress deprecation warning :S
+            # note that get_coords() gives back (0, 0) when cursor
+            # is outside the treeview window (e.g. drag & drop that
+            # was started inside the tree - see bug lp:646987)
             info = self.get_path_at_pos(x, y)
             if x > 0 and y > 0 and not info is None:
                 path, column, x, y = info
@@ -1088,8 +1088,8 @@ class InputForm(gtk.Table):
             elif type == 'option':
                 assert ':' in name, 'BUG: options should have name of the form "group:key"'
                 key, _ = name.rsplit(':', 1)
-                    # using rsplit to assure another ':' in the
-                    # group name is harmless
+                # using rsplit to assure another ':' in the
+                # group name is harmless
                 group = self._get_radiogroup(key)
                 if not group:
                     group = None  # we are the first widget
@@ -1337,8 +1337,8 @@ class InputForm(gtk.Table):
             for name, widget in self._get_radiogroup(key):
                 if widget.get_active():
                     _, name = name.rsplit(':', 1)
-                        # using rsplit to assure another ':' in the
-                        # group name is harmless
+                    # using rsplit to assure another ':' in the
+                    # group name is harmless
                     return name
 
     def __setitem__(self, key, value):
@@ -1554,7 +1554,7 @@ class InputEntry(gtk.Entry):
             return False
 
         self.set_icon(gtk.STOCK_CLEAR, self.clear, _('Clear'))
-            # T: tooltip for the inline icon to clear a text entry widget
+        # T: tooltip for the inline icon to clear a text entry widget
 
         def check_icon_sensitive(self):
             text = self.get_text()
@@ -1654,7 +1654,7 @@ class InputEntry(gtk.Entry):
             attr.insert(pango.AttrStyle(pango.STYLE_ITALIC, 0, end))
             c = 65535 / 16 * 8
             attr.insert(pango.AttrForeground(c, c, c, 0, end))
-                # TODO make color configurable, now just solid grey
+            # TODO make color configurable, now just solid grey
             layout.set_attributes(attr)
             # The layout is reset when new text is set, so
             # no need to "unset" the style at _hide_placeholder_text()
@@ -1828,8 +1828,8 @@ def gtk_entry_completion_match_func(completion, key, iter, column):
 
     key = key.decode('utf-8').lower()
     key = unicodedata.normalize('NFKD', key)
-        # decode utf-8 because we are called by gtk function
-        # normalization could be done elsewhere, but keep together
+    # decode utf-8 because we are called by gtk function
+    # normalization could be done elsewhere, but keep together
 
     model = completion.get_model()
     text = model.get_value(iter, column)
@@ -1846,8 +1846,8 @@ def gtk_entry_completion_match_func_startswith(completion, key, iter, column):
 
     key = key.decode('utf-8').lower()
     key = unicodedata.normalize('NFKD', key)
-        # decode utf-8 because we are called by gtk function
-        # normalization could be done elsewhere, but keep together
+    # decode utf-8 because we are called by gtk function
+    # normalization could be done elsewhere, but keep together
 
     model = completion.get_model()
     text = model.get_value(iter, column)
@@ -1872,7 +1872,7 @@ class PageEntry(InputEntry):
     '''
 
     _allow_select_root = False
-        # This attribute implements logic needed for NamespaceEntry
+    # This attribute implements logic needed for NamespaceEntry
 
     def __init__(self, notebook, path=None, subpaths_only=False, existing_only=False):
         '''Constructor
@@ -1908,8 +1908,8 @@ class PageEntry(InputEntry):
         self.set_completion(completion)
 
         self.connect_after('changed', DelayedCallback(200, self.__class__.update_completion))
-            # Don't interrupt typing to fill completion, wait for user to pause
-            # FIXME: wanted timeout of 400, but then popup becomes less responsive !?
+        # Don't interrupt typing to fill completion, wait for user to pause
+        # FIXME: wanted timeout of 400, but then popup becomes less responsive !?
 
     def set_use_relative_paths(self, notebook, path=None):
         '''Set the notebook and path to be used for relative paths.
@@ -2162,7 +2162,7 @@ def format_title(title):
 def get_window(widget):
     if widget and hasattr(widget, 'get_toplevel'):
         window = widget.get_toplevel()
-            # GtkInterface also implements get_toplevel
+        # GtkInterface also implements get_toplevel
         return window if isinstance(window, gtk.Window) else None
     else:
         return None
@@ -3070,7 +3070,7 @@ class Dialog(gtk.Dialog, ConnectorMixin):
 
     @property
     def destroyed(self): return not self.has_user_ref_count
-        # Returns True when dialog has been destroyed
+    # Returns True when dialog has been destroyed
 
     #{ Layout methods
 
@@ -3104,7 +3104,7 @@ class Dialog(gtk.Dialog, ConnectorMixin):
         L{set_help()} is used
         '''
         self.ui.show_help(page or self.help_page)
-            # recurses until gui.show_help is reached
+        # recurses until gui.show_help is reached
 
     def add_help_text(self, text):
         '''Adds a label with an info icon in front of it. Intended for
@@ -3365,7 +3365,7 @@ class ErrorDialog(gtk.MessageDialog):
                     _('When reporting this bug please include\n'
                       'the information from the text box below')
                     )  # T: generic error dialog text
-                # TODO add link to bug tracker
+            # TODO add link to bug tracker
 
             # Add widget with debug info
             text = self.get_debug_text(exc_info)
@@ -3723,7 +3723,7 @@ class FileDialog(Dialog):
     def _add_filter_all(self):
         filter = gtk.FileFilter()
         filter.set_name(_('All Files'))
-            # T: Filter in open file dialog, shows all files (*)
+        # T: Filter in open file dialog, shows all files (*)
         filter.add_pattern('*')
         self.filechooser.add_filter(filter)
 
@@ -3750,7 +3750,7 @@ class FileDialog(Dialog):
             self._add_filter_all()
         filter = gtk.FileFilter()
         filter.set_name(_('Images'))
-            # T: Filter in open file dialog, shows image files only
+        # T: Filter in open file dialog, shows image files only
         filter.add_pixbuf_formats()
         filter.add_mime_type('image/*')  # to allow types like .ico
         self.filechooser.add_filter(filter)
@@ -3851,7 +3851,7 @@ class ProgressDialog(gtk.Dialog):
         else:
             self.progressbar.set_fraction(frac)
             self.progressbar.set_text(_('%i of %i') % (i, total))
-                # T: lable in progressbar giving number of items and total
+            # T: lable in progressbar giving number of items and total
 
         if msg is None:
             self.msg_label.set_text('')
@@ -3877,7 +3877,7 @@ class LogFileDialog(Dialog):
 
     def __init__(self, ui, file):
         Dialog.__init__(self, ui, _('Log file'), buttons=gtk.BUTTONS_CLOSE)
-            # T: dialog title for log view dialog - e.g. for Equation Editor
+        # T: dialog title for log view dialog - e.g. for Equation Editor
         self.set_default_size(600, 300)
         window, textview = ScrolledTextView(file.read(), monospace=True)
         self.vbox.add(window)
@@ -4208,7 +4208,7 @@ class ImageView(gtk.Layout):
         '''
         assert bgcolor.startswith('#'), 'BUG: Should specify colors in hex'
         color = gtk.gdk.color_parse(bgcolor)
-            # gtk.gdk.Color(spec) only for gtk+ >= 2.14
+        # gtk.gdk.Color(spec) only for gtk+ >= 2.14
         self.modify_bg(gtk.STATE_NORMAL, color)
 
     def set_checkerboard(self, checkerboard):

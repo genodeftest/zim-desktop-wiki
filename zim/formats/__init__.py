@@ -901,7 +901,7 @@ class OldParseTreeBuilder(object):
         self._data = []  # buffer with data
         self._tail = False  # True if we are after an end tag
         self._seen_eol = 2  # track line ends on flushed data
-            # starts with "2" so check is ok for first top level element
+        # starts with "2" so check is ok for first top level element
 
     def start(self, tag, attrib=None):
         if tag == '_ignore_':
@@ -1130,7 +1130,7 @@ class ParserClass(object):
 import collections
 
 DumperContextElement = collections.namedtuple('DumperContextElement', ('tag', 'attrib', 'text'))
-    # FIXME unify this class with a generic Element class (?)
+# FIXME unify this class with a generic Element class (?)
 
 
 class DumperClass(Visitor):
@@ -1234,9 +1234,9 @@ class DumperClass(Visitor):
 
             strings = method(tag, attrib, strings)
             #~ try:
-                #~ u''.join(strings)
+            #~ u''.join(strings)
             #~ except:
-                #~ print "BUG: %s returned %s" % ('dump_'+tag, strings)
+            #~ print "BUG: %s returned %s" % ('dump_'+tag, strings)
 
         if strings is not None:
             self.context[-1].text.extend(strings)

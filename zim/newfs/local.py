@@ -175,7 +175,7 @@ class LocalFolder(LocalFSObjectBase, Folder):
 
         names = sorted([n for n in names
                 if n[0] not in ('.', '~') and n[-1] != '~'])
-            # Ignore hidden files and tmp files
+        # Ignore hidden files and tmp files
 
         if FS_ENCODING == 'mbcs':
             # We are running on windows and os.listdir will handle unicode natively
@@ -351,9 +351,9 @@ class LocalFile(LocalFSObjectBase, File):
                 return [
                         l.decode('UTF-8').lstrip(u'\ufeff').replace('\x00', '')
                                 for l in fh]
-                                # Strip unicode byte order mark
-                                # Internally we use Unix line ends - so strip out \r
-                                # And remove any NULL byte since they screw up parsing
+                # Strip unicode byte order mark
+                # Internally we use Unix line ends - so strip out \r
+                # And remove any NULL byte since they screw up parsing
         except IOError:
             if not self.exists():
                 raise FileNotFoundError(self)
@@ -448,9 +448,9 @@ def get_tmpdir():
     try:
         dir.touch(mode=0o700)  # Limit to single user
         os.chmod(dir.encodedpath, 0o700)  # Limit to single user when dir already existed
-            # Raises OSError if not allowed to chmod
+        # Raises OSError if not allowed to chmod
         os.listdir(dir.encodedpath)
-            # Raises OSError if we do not have access anymore
+        # Raises OSError if we do not have access anymore
     except OSError:
         raise AssertionError('Either you are not the owner of "%s" or the permissions are un-safe.\n'
                 'If you can not resolve this, try setting $TMP to a different location.' % dir.path)

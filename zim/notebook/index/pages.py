@@ -27,7 +27,7 @@ FILE_TYPE_ATTACHMENT
 
 ROOT_PATH = Path(':')
 ROOT_ID = 1  # Constant for the ID of the root namespace in "pages"
-                        # (Primary key starts count at 1 and first entry will be root)
+# (Primary key starts count at 1 and first entry will be root)
 
 PAGE_EXISTS_UNCERTAIN = 0  # e.g. folder with unknown children - not shown to outside world
 PAGE_EXISTS_AS_LINK = 1  # placeholder for link target
@@ -152,7 +152,7 @@ class PagesIndexer(IndexerBase):
                         (None, None, pagename.name)
                 )
                 self.update_parent(pagename, oldrow=row)
-                        # checks if any children have sources - else will be removed
+                # checks if any children have sources - else will be removed
                 try:
                     row = self._select(pagename)
                     self.emit('page-changed', row, emptyParseTree())

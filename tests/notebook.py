@@ -95,7 +95,7 @@ class TestNotebookInfoList(tests.TestCase):
         list = get_notebook_list()
         self.assertTrue(len(list) == 1)
         list.append(NotebookInfo(uri1, interwiki='foobar'))
-            # on purpose do not set name, should default to basename
+        # on purpose do not set name, should default to basename
         list.write()
 
         self.assertTrue(len(list) == 2)
@@ -112,7 +112,7 @@ class TestNotebookInfoList(tests.TestCase):
             info = list.get_by_name(name)
             self.assertEqual(info.uri, uri1)
             self.assertRaises(FileNotFoundError, build_notebook, info)
-                # path should not exist
+            # path should not exist
 
         # Test default
         list.set_default(uri1)
@@ -334,7 +334,7 @@ class TestNotebook(tests.TestCase):
             page = self.notebook.get_page(oldpath)
             self.assertFalse(page.hascontent, msg="%s still has content" % page)
             #self.assertFalse(page.haschildren, msg="%s still has children" % page)
-                # Can still have remaining placeholders
+            # Can still have remaining placeholders
 
         # Test moving a page below it's own namespace
         oldpath = Path('Test:Bar')
@@ -378,8 +378,8 @@ class TestNotebook(tests.TestCase):
                 self.notebook.links.n_list_links_section, page, LINK_DIR_BACKWARD)
         self.assertRaises(IndexNotFoundError,
                 self.notebook.links.list_links_section, page, LINK_DIR_BACKWARD)
-            # if links are removed and placeholder is cleaned up the
-            # page doesn't exist anymore in the index so we get this error
+        # if links are removed and placeholder is cleaned up the
+        # page doesn't exist anymore in the index so we get this error
 
         page = self.notebook.get_page(Path('SomePageWithLinks'))
         content = page.dump('wiki')
@@ -399,8 +399,8 @@ class TestNotebook(tests.TestCase):
                 self.notebook.links.n_list_links_section, page, LINK_DIR_BACKWARD)
         self.assertRaises(IndexNotFoundError,
                 self.notebook.links.list_links_section, page, LINK_DIR_BACKWARD)
-            # if links are removed and placeholder is cleaned up the
-            # page doesn't exist anymore in the index so we get this error
+        # if links are removed and placeholder is cleaned up the
+        # page doesn't exist anymore in the index so we get this error
 
         page = self.notebook.get_page(Path('SomePageWithLinks'))
         content = page.dump('wiki')
@@ -413,25 +413,25 @@ class TestNotebook(tests.TestCase):
         #~ cursor = self.notebook.index.db.cursor()
         #~ cursor.execute('select * from pages')
         #~ for row in cursor:
-            #~ print row
+        #~ print row
         #~ cursor.execute('select * from links')
         #~ for row in cursor:
-            #~ print row
+        #~ print row
 
         # Try rename
         page = self.notebook.get_page(Path('Test:wiki'))
         self.assertTrue(page.hascontent)
         copy = page
-            # we now have a copy of the page object - this is an important
-            # part of the test - see if caching of page objects doesn't bite
+        # we now have a copy of the page object - this is an important
+        # part of the test - see if caching of page objects doesn't bite
 
         with tests.LoggingFilter('zim.notebook', message='Number of links'):
             self.notebook.rename_page(Path('Test:wiki'), 'foo')
         page = self.notebook.get_page(Path('Test:wiki'))
         self.assertFalse(page.hascontent)
         page = self.notebook.get_page(Path('Test:foo'))
-            # If we get an error here because notebook resolves Test:Foo
-            # probably the index did not clean up placeholders correctly
+        # If we get an error here because notebook resolves Test:Foo
+        # probably the index did not clean up placeholders correctly
         self.assertTrue(page.hascontent)
 
         self.assertFalse(copy.valid)
@@ -628,7 +628,7 @@ http://foo.org # urls are untouched
 #		'''Test page.resolve_link()'''
 #		page = self.notebook.get_page(':Test:foo')
 #		for link, wanted in (
-            #~ (':foo:bar', ('page', ':foo:bar')),
+        #~ (':foo:bar', ('page', ':foo:bar')),
 #			('foo:bar', ('page', ':Test:foo:bar')),
 #			('Test', ('page', ':Test')),
 #			('Test:non-existent', ('page', ':Test:non-existent')),
@@ -636,9 +636,9 @@ http://foo.org # urls are untouched
 #			('mailto:user@domain.com', ('mailto', 'mailto:user@domain.com')),
 #			('http://zim-wiki.org', ('http', 'http://zim-wiki.org')),
 #			('foo://zim-wiki.org', ('foo', 'foo://zim-wiki.org')),
-            #~ ('file://'),
-            #~ ('/foo/bar', ('file', '/foo/bar')),
-            #~ ('man?test', ('man', 'test')),
+        #~ ('file://'),
+        #~ ('/foo/bar', ('file', '/foo/bar')),
+        #~ ('man?test', ('man', 'test')),
 #		): self.assertEqual(self.notebook.resolve_link(link, page), wanted)
 
     #~ def testResolveName(self):
@@ -647,8 +647,8 @@ http://foo.org # urls are untouched
 #~
         #~ # First make sure basic list function is working
         #~ def list_pages(name):
-            #~ for page in self.store.get_pages(name):
-                #~ yield page.basename
+        #~ for page in self.store.get_pages(name):
+        #~ yield page.basename
         #~ self.assertTrue('Test' in list_pages(''))
         #~ self.assertTrue('foo' in list_pages(':Test'))
         #~ self.assertTrue('bar' in list_pages(':Test:foo'))
@@ -658,16 +658,16 @@ http://foo.org # urls are untouched
         #~ # function in store, so path "anchor" does not work, search
         #~ # is strictly right to left through the namespace, if any
         #~ for link, namespace, name in (
-            #~ ('BAR','Test:foo','Test:foo:bar'),
-            #~ ('test',None,'Test'),
-            #~ ('test','Test:foo:bar','Test'),
-            #~ ('FOO:Dus','Test:foo:bar','Test:foo:Dus'),
-            #~ # FIXME more ambigous test data
+        #~ ('BAR','Test:foo','Test:foo:bar'),
+        #~ ('test',None,'Test'),
+        #~ ('test','Test:foo:bar','Test'),
+        #~ ('FOO:Dus','Test:foo:bar','Test:foo:Dus'),
+        #~ # FIXME more ambigous test data
         #~ ):
-            #~ print '-'*10+'\nLINK %s (%s)' % (link, namespace)
-            #~ r = self.store.resolve_name(link, namespace=namespace)
-            #~ print 'RESULT %s' % r
-            #~ self.assertEqual(r, name)
+        #~ print '-'*10+'\nLINK %s (%s)' % (link, namespace)
+        #~ r = self.store.resolve_name(link, namespace=namespace)
+        #~ print 'RESULT %s' % r
+        #~ self.assertEqual(r, name)
 
 
 class TestPath(tests.TestCase):
@@ -759,7 +759,7 @@ class TestPage(TestPath):
         ])
 
         self.assertEqual(page.get_parsetree().tostring(), tree.tostring())
-            # ensure we didn't change the tree
+        # ensure we didn't change the tree
 
         # TODO test get / set parse tree with and without source
 

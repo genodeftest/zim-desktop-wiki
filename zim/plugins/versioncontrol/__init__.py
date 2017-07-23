@@ -225,7 +225,7 @@ class MainWindowExtension(WindowExtension):
 
         if not msg:
             msg = _('Automatically saved version from zim')
-                # T: default version comment for auto-saved versions
+            # T: default version comment for auto-saved versions
 
         with NotebookState(self.notebook_ext.notebook):
             try:
@@ -893,7 +893,7 @@ class VersionControlInitDialog(QuestionDialog):
         hbox = gtk.HBox(spacing=5)
         hbox.pack_end(self.combobox, False)
         hbox.pack_end(gtk.Label(_('Backend') + ':'), False)
-            # T: option to chose versioncontrol backend
+        # T: option to chose versioncontrol backend
         self.vbox.pack_start(hbox, False)
         hbox.show_all()
 
@@ -919,7 +919,7 @@ class SaveVersionDialog(Dialog):
         self.vbox.add(vpaned)
 
         window, self.textview = ScrolledTextView(_('Saved version from zim'))
-            # T: default version comment in the "save version" dialog
+        # T: default version comment in the "save version" dialog
         self.textview.set_editable(True)
         vpaned.add1(window)
 
@@ -927,7 +927,7 @@ class SaveVersionDialog(Dialog):
         vpaned.add2(vbox)
 
         label = gtk.Label('<b>' + _('Details') + '</b>')
-            # T: section for version details in "save version" dialog
+        # T: section for version details in "save version" dialog
         label.set_use_markup(True)
         label.set_alignment(0, 0.5)
         vbox.pack_start(label, False)
@@ -974,9 +974,9 @@ class VersionsDialog(Dialog):
         vbox.pack_start(label, False)
 
         self.notebook_radio = gtk.RadioButton(None, _('Complete _notebook'))
-            # T: Option in versions dialog to show version for complete notebook
+        # T: Option in versions dialog to show version for complete notebook
         self.page_radio = gtk.RadioButton(self.notebook_radio, _('_Page') + ':')
-            # T: Option in versions dialog to show version for single page
+        # T: Option in versions dialog to show version for single page
         #~ recursive_box = gtk.CheckButton('Recursive')
         vbox.pack_start(self.notebook_radio, False)
 
@@ -1041,13 +1041,13 @@ state. Or select multiple versions to see changes between those versions.
 
         # Notebook Changes button
         diff_button = gtk.Button(_('Show _Changes'))
-            # T: button in versions dialog for diff
+        # T: button in versions dialog for diff
         diff_button.connect('clicked', lambda o: self.show_changes())
         buttonbox.add(diff_button)
 
         # Compare page button
         comp_button = gtk.Button(_('_Side by Side'))
-            # T: button in versions dialog for side by side comparison
+        # T: button in versions dialog for side by side comparison
         comp_button.connect('clicked', lambda o: self.show_side_by_side())
         buttonbox.add(comp_button)
 
@@ -1134,7 +1134,7 @@ state. Or select multiple versions to see changes between those versions.
         assert not file is None
         annotated = self.vcs.get_annotated(file)
         TextDialog(self, _('Annotated Page Source'), annotated).run()
-            # T: dialog title
+        # T: dialog title
 
     def restore_version(self):
         file = self._get_file()
@@ -1159,7 +1159,7 @@ state. Or select multiple versions to see changes between those versions.
         versions = self.versionlist.get_versions()
         diff = self.vcs.get_diff(file=file, versions=versions)
         TextDialog(self, _('Changes'), diff).run()
-            # T: dialog title
+        # T: dialog title
 
     def show_side_by_side(self):
         file = self._get_file()
@@ -1170,7 +1170,7 @@ state. Or select multiple versions to see changes between those versions.
         files = map(lambda v: self._get_tmp_file(file, v), versions)
         if len(files) == 1:
             tmp = TmpFile(file.basename + '--CURRENT', persistent=True)
-                # need to be persistent, else it is cleaned up before application spawned
+            # need to be persistent, else it is cleaned up before application spawned
             tmp.writelines(file.readlines())
             files.insert(0, tmp)
 
@@ -1179,7 +1179,7 @@ state. Or select multiple versions to see changes between those versions.
     def _get_tmp_file(self, file, version):
         text = self.vcs.get_version(file, version)
         tmp = TmpFile(file.basename + '--REV%s' % version, persistent=True)
-            # need to be persistent, else it is cleaned up before application spawned
+        # need to be persistent, else it is cleaned up before application spawned
         tmp.writelines(text)
         return tmp
 
@@ -1207,7 +1207,7 @@ class VersionsTreeView(SingleClickTreeView):
 
     def __init__(self):
         model = gtk.ListStore(str, str, str, str, str)
-            # REV_SORT_COL, REV_COL, DATE_COL, USER_COL, MSG_COL
+        # REV_SORT_COL, REV_COL, DATE_COL, USER_COL, MSG_COL
         gtk.TreeView.__init__(self, model)
 
         self.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
@@ -1231,13 +1231,13 @@ class VersionsTreeView(SingleClickTreeView):
             self.append_column(column)
 
         model.set_sort_column_id(self.REV_SORT_COL, gtk.SORT_DESCENDING)
-            # By default sort by rev
+        # By default sort by rev
 
     def load_versions(self, versions):
         model = self.get_model()
         model.clear()  # Empty for when we update
         model.set_sort_column_id(self.REV_SORT_COL, gtk.SORT_DESCENDING)
-            # By default sort by rev
+        # By default sort by rev
 
         for version in versions:
             #~ print version

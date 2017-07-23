@@ -40,7 +40,7 @@ class TestThumbnailCreators(tests.TestCase):
                 pixbuf = gtk.gdk.pixbuf_new_from_file(thumbfile.encodedpath)
                 self.assertEqual(pixbuf.get_option('tEXt::Thumb::URI'), file.uri)
                 self.assertTrue(pixbuf.get_option('tEXt::Thumb::URI').startswith('file:///'))
-                    # Specific requirement of spec to use file:/// and not file://localhost/
+                # Specific requirement of spec to use file:/// and not file://localhost/
                 self.assertEqual(int(pixbuf.get_option('tEXt::Thumb::MTime')), int(file.mtime()))
 
             self.assertTrue(i > 3)
@@ -142,7 +142,7 @@ class TestThumbnailQueue(tests.TestCase):
 
         # Test input / output
         queue.queue_thumbnail_request(self.SRC_DIR.file('README.txt'), 64)
-            # put an error in the queue
+        # put an error in the queue
 
         dir = self.SRC_DIR.folder('data/pixmaps')
         pixmaps = set()

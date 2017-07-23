@@ -76,7 +76,7 @@ class NotebookTreeModel(gtk.ListStore):
         @param notebooklist: a list of L{NotebookInfo} objects
         '''
         gtk.ListStore.__init__(self, bool, str, str, gtk.gdk.Pixbuf, object)
-                                        # OPEN_COL, NAME_COL, TEXT_COL PIXBUF_COL INFO_COL
+        # OPEN_COL, NAME_COL, TEXT_COL PIXBUF_COL INFO_COL
 
         if notebooklist is None:
             self.notebooklist = get_notebook_list()
@@ -113,7 +113,7 @@ class NotebookTreeModel(gtk.ListStore):
         path = File(info.uri).path
         text = '<b>%s</b>\n<span foreground="#5a5a5a" size="small">%s</span>' % \
                         (encode_markup_text(info.name), encode_markup_text(path))
-                # T: Path label in 'open notebook' dialog
+        # T: Path label in 'open notebook' dialog
 
         if info.icon and File(info.icon).exists():
             w, h = gtk.icon_size_lookup(gtk.ICON_SIZE_BUTTON)
@@ -122,7 +122,7 @@ class NotebookTreeModel(gtk.ListStore):
             pixbuf = None
 
         self.append((False, info.name, text, pixbuf, info))
-                # OPEN_COL NAME_COL TEXT_COL PIXBUF_COL INFO_COL
+        # OPEN_COL NAME_COL TEXT_COL PIXBUF_COL INFO_COL
 
     def get_iter_for_default(self):
         '''Returns a TreeIter for the default notebook or None'''
@@ -173,7 +173,7 @@ class NotebookTreeView(gtk.TreeView):
         cell_renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         cell_renderer.set_fixed_height_from_font(2)
         column = gtk.TreeViewColumn(_('Notebook'), cell_renderer, markup=TEXT_COL)
-            # T: Column heading in 'open notebook' dialog
+        # T: Column heading in 'open notebook' dialog
         column.set_sort_column_id(NAME_COL)
         self.append_column(column)
 
@@ -327,7 +327,7 @@ class NotebookDialog(Dialog):
 
         hbox = gtk.HBox(spacing=5)
         hbox.pack_start(gtk.Label(_('Default notebook') + ': '), False)
-            # T: Input label in 'open notebook' dialog
+        # T: Input label in 'open notebook' dialog
         hbox.pack_start(self.combobox, False)
         hbox.pack_start(clear_button, False)
         self.vbox.pack_start(hbox, False)
@@ -366,9 +366,9 @@ class NotebookDialog(Dialog):
         #~ properties = EditNotebookDialog(self, name, folder).run()
         #~ if properties:
             #~ model.set(iter,
-                #~ OPEN_COL, False,
-                #~ NAME_COL, properties['name'],
-                #~ PATH_COL, properties['folder'] )
+            #~ OPEN_COL, False,
+            #~ NAME_COL, properties['name'],
+            #~ PATH_COL, properties['folder'] )
             #~ model.write()
 
     def do_remove_notebook(self, *a):

@@ -89,8 +89,8 @@ class ExportLinker(BaseLinker):
     #~ def icon(self, name):
         #~ '''Returns an url for an icon'''
         #~ if not name in self._icons:
-            #~ path = 'icons/%s.png' % name
-            #~ self._icons[name] = self.resource(path)
+        #~ path = 'icons/%s.png' % name
+        #~ self._icons[name] = self.resource(path)
         #~ return self._icons[name]
 
     def resource(self, path):
@@ -265,17 +265,17 @@ class StaticExportLinker(ExportLinker):
 
     #~ def icon(self, name):
         #~ if not name in self._icons:
-            #~ path = 'icons/%s.png' % name
-            #~ if self.layout.resources_dir:
-                #~ file = self.layout.resources_dir.file(path)
-                #~ if file.exists():
-                                #~ self._icons[name] = data_uri(file)
+        #~ path = 'icons/%s.png' % name
+        #~ if self.layout.resources_dir:
+        #~ file = self.layout.resources_dir.file(path)
+        #~ if file.exists():
+        #~ self._icons[name] = data_uri(file)
 
-            #~ if not name in self._icons:
-                #~ file = data_file('pixmaps/%s.png' % name)
-                #~ if file.exists():
-                                #~ self._icons[name] = data_uri(file)
-                #~ else:
-                                #~ self._icons[name] = file.uri
+        #~ if not name in self._icons:
+        #~ file = data_file('pixmaps/%s.png' % name)
+        #~ if file.exists():
+        #~ self._icons[name] = data_uri(file)
+        #~ else:
+        #~ self._icons[name] = file.uri
 
         #~ return self._icons[name]

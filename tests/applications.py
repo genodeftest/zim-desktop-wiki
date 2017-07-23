@@ -159,7 +159,7 @@ class TestApplicationManager(tests.TestCase):
 
         default = manager.get_default_application('text/plain')
         self.assertIsInstance(default, (None.__class__, DesktopEntryFile))
-            # system default or None
+        # system default or None
 
         manager.set_default_application('text/plain', entry_html)  # create
         manager.set_default_application('text/plain', entry_text)  # update
@@ -334,7 +334,7 @@ class Foo(object):  # FIXME - this test blocks on full test runs ??
             self.assertTrue(entry.file.exists())
             self.assertEqual(manager.get_application(entry.key), entry)
             self.assertTrue(entry['Desktop Entry']['NoDisplay'])
-                # do not show custom items in menus
+            # do not show custom items in menus
 
         # Mock main ui object
         ui = tests.MockObject()

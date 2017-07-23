@@ -128,7 +128,7 @@ class TemplateParser(object):
     )  # These tokens take an argument
 
     _tokens_without_expr = ('ELSE', 'END')
-        # These tokens do not take an argument
+    # These tokens do not take an argument
 
     _tokens_with_end = (
             'IF', 'ELIF', 'ELSIF', 'ELSE',
@@ -140,7 +140,7 @@ class TemplateParser(object):
     )  # For these tokens strip whitespace of token is on it's own line
 
     _tokens_with_default_chomp = ('SET',)
-        # For these tokens always strip whitespace left and right
+    # For these tokens always strip whitespace left and right
 
     def __init__(self):
         self.text_parser = self.build_text_parser()

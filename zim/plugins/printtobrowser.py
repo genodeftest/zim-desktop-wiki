@@ -76,8 +76,8 @@ class MainWindowExtension(WindowExtension):
             page = self.window.ui.page  # XXX
         file = self.plugin.print_to_file(notebook, page)
         self.window.ui.open_url('file://%s' % file)  # XXX
-            # Try to force web browser here - otherwise it goes to the
-            # file browser which can have unexpected results
+        # Try to force web browser here - otherwise it goes to the
+        # file browser which can have unexpected results
 
 
 @extends('TaskListDialog')
@@ -95,5 +95,5 @@ class TaskListDialogExtension(DialogExtension):
         file = TmpFile('print-to-browser.html', persistent=True, unique=False)
         file.write(html)
         self.window.ui.open_url('file://%s' % file)  # XXX
-            # Try to force web browser here - otherwise it goes to the
-            # file browser which can have unexpected results
+        # Try to force web browser here - otherwise it goes to the
+        # file browser which can have unexpected results

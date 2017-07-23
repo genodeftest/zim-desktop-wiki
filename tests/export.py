@@ -473,50 +473,50 @@ class TestExportFormatRst(TestExportFormat, tests.TestCase):
     #~ data = './tests/data/templates/'
 #~
     #~ options = {
-        #~ 'format': 'html',
-        #~ 'template': './tests/data/templates/html/Default.html'
+    #~ 'format': 'html',
+    #~ 'template': './tests/data/templates/html/Default.html'
     #~ }
 #~
     #~ def runTest(self):
-        #~ pass # should not run, block just in case
+    #~ pass # should not run, block just in case
 #~
     #~ def testExportResources(self):
-        #~ '''Test export notebook to html with template resources'''
-        #~ self.export()
+    #~ '''Test export notebook to html with template resources'''
+    #~ self.export()
 #~
-        #~ file = self.dir.file('Test/foo.html')
-        #~ self.assertTrue(file.exists())
-        #~ text = file.read()
-        #~ self.assertTrue('src="../_resources/foo/bar.png"' in text)
-        #~ self.assertTrue(self.dir.file('_resources/foo/bar.png').exists())
+    #~ file = self.dir.file('Test/foo.html')
+    #~ self.assertTrue(file.exists())
+    #~ text = file.read()
+    #~ self.assertTrue('src="../_resources/foo/bar.png"' in text)
+    #~ self.assertTrue(self.dir.file('_resources/foo/bar.png').exists())
 #~
-        #~ for icon in ('checked-box',): #'unchecked-box', 'xchecked-box'):
-            #~ # Template has its own checkboxes
-            #~ self.assertTrue(self.dir.file('_resources/%s.png' % icon).exists())
-            #~ self.assertNotEqual(
-                #~ md5(self.dir.file('_resources/%s.png' % icon)),
-                #~ md5(data_file('pixmaps/%s.png' % icon))
-            #~ )
+    #~ for icon in ('checked-box',): #'unchecked-box', 'xchecked-box'):
+    #~ # Template has its own checkboxes
+    #~ self.assertTrue(self.dir.file('_resources/%s.png' % icon).exists())
+    #~ self.assertNotEqual(
+    #~ md5(self.dir.file('_resources/%s.png' % icon)),
+    #~ md5(data_file('pixmaps/%s.png' % icon))
+    #~ )
 #~
     #~ def testListTemplates(self):
-        #~ '''Assert list templates still works with resource folders present'''
-        #~ import shutil
-        #~ from zim.config import XDG_DATA_HOME
-        #~ from zim.templates import list_templates, get_template
+    #~ '''Assert list templates still works with resource folders present'''
+    #~ import shutil
+    #~ from zim.config import XDG_DATA_HOME
+    #~ from zim.templates import list_templates, get_template
 #~
-        #~ # Make sure our template with resources is first in line
-        #~ datahome = XDG_DATA_HOME.subdir('zim/templates/')
-        #~ assert not datahome.exists()
-        #~ shutil.copytree(self.data, datahome.path)
+    #~ # Make sure our template with resources is first in line
+    #~ datahome = XDG_DATA_HOME.subdir('zim/templates/')
+    #~ assert not datahome.exists()
+    #~ shutil.copytree(self.data, datahome.path)
 #~
-        #~ for name, basename in list_templates('html'):
-            #~ if name == 'Default':
-                #~ self.assertEqual(basename, 'Default.html')
+    #~ for name, basename in list_templates('html'):
+    #~ if name == 'Default':
+    #~ self.assertEqual(basename, 'Default.html')
 #~
-        #~ template = get_template('html', 'Default')
-        #~ self.assertEqual(template.file, datahome.file('html/Default.html').path)
-        #~ self.assertEqual(template.resources_dir, datahome.subdir('html/Default'))
-        #~ self.assertTrue(template.resources_dir.exists())
+    #~ template = get_template('html', 'Default')
+    #~ self.assertEqual(template.file, datahome.file('html/Default.html').path)
+    #~ self.assertEqual(template.resources_dir, datahome.subdir('html/Default'))
+    #~ self.assertTrue(template.resources_dir.exists())
 
 
 class TestExportCommand(tests.TestCase):

@@ -56,7 +56,7 @@ class ZeitgeistPlugin(PluginClass):
         uri = page.source.uri
         origin = gio.File(uri).get_parent().get_uri()
         text = _('Wiki page: %s') % page.name
-            # T: label for how zim pages show up in the recent files menu, %s is the page name
+        # T: label for how zim pages show up in the recent files menu, %s is the page name
 
         subject = Subject.new_for_values(mimetype='text/x-zim-wiki',
                                          uri=uri,

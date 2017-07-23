@@ -32,14 +32,14 @@ class TaskListWidgetMixin(object):
         menu.append(sep)
 
         item = gtk.CheckMenuItem(_('Show Tasks as Flat List'))
-                # T: Checkbox in task list - hides parent items
+        # T: Checkbox in task list - hides parent items
         item.set_active(self.uistate['show_flatlist'])
         item.connect('toggled', self.on_show_flatlist_toggle)
         item.show_all()
         menu.append(item)
 
         item = gtk.CheckMenuItem(_('Only Show Active Tasks'))
-                # T: Checkbox in task list - this options hides tasks that are not yet started
+        # T: Checkbox in task list - this options hides tasks that are not yet started
         item.set_active(self.uistate['only_show_act'])
         item.connect('toggled', self.on_show_active_toggle)
         item.show_all()
@@ -149,7 +149,7 @@ class TaskListDialog(TaskListWidgetMixin, Dialog):
                 self.task_list.set_filter_actionable(active)
 
         self.act_toggle = gtk.CheckButton(_('Only Show Active Tasks'))
-            # T: Checkbox in task list - this options hides tasks that are not yet started
+        # T: Checkbox in task list - this options hides tasks that are not yet started
         self.act_toggle.set_active(self.uistate['only_show_act'])
         self.act_toggle.connect('toggled', on_show_active_toggle)
         self.uistate.connect('changed', lambda o: self.act_toggle.set_active(self.uistate['only_show_act']))
@@ -162,7 +162,7 @@ class TaskListDialog(TaskListWidgetMixin, Dialog):
         def set_statistics():
             total = self.task_list.get_n_tasks()
             text = ngettext('%i open item', '%i open items', total) % total
-                # T: Label for task List, %i is the number of tasks
+            # T: Label for task List, %i is the number of tasks
             self.statistics_label.set_text(text)
 
         set_statistics()
@@ -173,9 +173,9 @@ class TaskListDialog(TaskListWidgetMixin, Dialog):
             set_statistics()
 
         callback = DelayedCallback(10, on_tasklist_changed)
-            # Don't really care about the delay, but want to
-            # make it less blocking - should be async preferably
-            # now it is at least on idle
+        # Don't really care about the delay, but want to
+        # make it less blocking - should be async preferably
+        # now it is at least on idle
 
         # XXX HACK to get dependency to connect to
         # -- no access to plugin, so can;t use get_extension()
@@ -222,7 +222,7 @@ class TagListTreeView(SingleClickTreeView):
         self.task_labels = task_labels
 
         column = gtk.TreeViewColumn(_('Tags'))
-            # T: Column header for tag list in Task List dialog
+        # T: Column header for tag list in Task List dialog
         self.append_column(column)
 
         cr1 = gtk.CellRendererText()
@@ -365,7 +365,7 @@ class TaskListTreeView(BrowserTreeView):
             sort_column=PRIO_COL, sort_order=gtk.SORT_DESCENDING
     ):
         self.real_model = gtk.TreeStore(bool, bool, int, str, str, object, str, str, int, int, str)
-            # VIS_COL, ACT_COL, PRIO_COL, START_COL, DUE_COL, TAGS_COL, DESC_COL, PAGE_COL, TASKID_COL, PRIO_SORT_COL, PRIO_SORT_LABEL_COL
+        # VIS_COL, ACT_COL, PRIO_COL, START_COL, DUE_COL, TAGS_COL, DESC_COL, PAGE_COL, TASKID_COL, PRIO_SORT_COL, PRIO_SORT_LABEL_COL
         model = self.real_model.filter_new()
         model.set_visible_column(self.VIS_COL)
         model = gtk.TreeModelSort(model)
@@ -407,7 +407,7 @@ class TaskListTreeView(BrowserTreeView):
         cell_renderer = gtk.CellRendererText()
         cell_renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         column = gtk.TreeViewColumn(_('Task'), cell_renderer, markup=self.DESC_COL)
-                # T: Column header Task List dialog
+        # T: Column header Task List dialog
         column.set_resizable(True)
         column.set_sort_column_id(self.DESC_COL)
         column.set_expand(True)
@@ -461,7 +461,7 @@ class TaskListTreeView(BrowserTreeView):
         if not compact:
             cell_renderer = gtk.CellRendererText()
             column = gtk.TreeViewColumn(_('Date'), cell_renderer)
-                # T: Column header Task List dialog
+            # T: Column header Task List dialog
             column.set_cell_data_func(cell_renderer, render_date)
             column.set_sort_column_id(self.DUE_COL)
             self.append_column(column)
@@ -470,7 +470,7 @@ class TaskListTreeView(BrowserTreeView):
         if not compact:
             cell_renderer = gtk.CellRendererText()
             column = gtk.TreeViewColumn(_('Page'), cell_renderer, text=self.PAGE_COL)
-                            # T: Column header Task List dialog
+            # T: Column header Task List dialog
             column.set_sort_column_id(self.PAGE_COL)
             self.append_column(column)
 
@@ -490,8 +490,8 @@ class TaskListTreeView(BrowserTreeView):
 
         # Make tags case insensitive
         tags = sorted((t.lower(), t) for t in self._tags)
-            # tuple sorting will sort ("foo", "Foo") before ("foo", "foo"),
-            # but ("bar", ..) before ("foo", ..)
+        # tuple sorting will sort ("foo", "Foo") before ("foo", "foo"),
+        # but ("bar", ..) before ("foo", ..)
         prev = ('', '')
         for tag in tags:
             if tag[0] == prev[0]:
@@ -583,7 +583,7 @@ class TaskListTreeView(BrowserTreeView):
 
             # Insert all columns
             modelrow = [False, actionable, row['prio'], row['start'], row['due'], tags, desc, path.name, row['id'], prio_sort_int, prio_sort_label]
-                # VIS_COL, ACT_COL, PRIO_COL, START_COL, DUE_COL, TAGS_COL, DESC_COL, PAGE_COL, TASKID_COL, PRIO_SORT_COL, PRIO_SORT_LABEL_COL
+            # VIS_COL, ACT_COL, PRIO_COL, START_COL, DUE_COL, TAGS_COL, DESC_COL, PAGE_COL, TASKID_COL, PRIO_SORT_COL, PRIO_SORT_LABEL_COL
             modelrow[0] = self._filter_item(modelrow)
             myiter = self.real_model.append(iter, modelrow)
 
@@ -761,8 +761,8 @@ class TaskListTreeView(BrowserTreeView):
         logger.debug('Exporting to clipboard current view of task list.')
         text = self.get_visible_data_as_csv()
         Clipboard.set_text(text)
-            # TODO set as object that knows how to format as text / html / ..
-            # unify with export hooks
+        # TODO set as object that knows how to format as text / html / ..
+        # unify with export hooks
 
     def get_visible_data_as_csv(self):
         text = ""

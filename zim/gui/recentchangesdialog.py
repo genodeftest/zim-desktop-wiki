@@ -43,7 +43,7 @@ class RecentChangesTreeView(BrowserTreeView):
 
     def __init__(self, ui):
         model = gtk.ListStore(str, str)
-            # NAME_COL, MODIFIED_COL
+        # NAME_COL, MODIFIED_COL
         BrowserTreeView.__init__(self, model)
         self.ui = ui
 

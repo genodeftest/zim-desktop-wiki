@@ -137,7 +137,7 @@ except ImportError:
     gio = None
 
 _last_warning_missing_icon = None
-    # used to surpress redundant logging
+# used to surpress redundant logging
 
 
 def get_mime_icon(file, size):
@@ -681,7 +681,7 @@ class OpenWithMenu(gtk.Menu):
     '''
 
     CUSTOMIZE = _('Customize...')
-        # T: label to customize 'open with' menu
+    # T: label to customize 'open with' menu
 
     def __init__(self, widget, file, mimetype=None):
         '''Constructor
@@ -707,7 +707,7 @@ class OpenWithMenu(gtk.Menu):
 
         if not self.get_children():
             item = gtk.MenuItem(_('No Applications Found'))
-                # T: message when no applications in "Open With" menu
+            # T: message when no applications in "Open With" menu
             item.set_sensitive(False)
             self.append(item)
 
@@ -736,7 +736,7 @@ class DesktopEntryMenuItem(gtk.ImageMenuItem):
         @param entry: the L{DesktopEntryFile}
         '''
         text = _('Open with "%s"') % entry.name
-            # T: menu item to open a file with an application, %s is the app name
+        # T: menu item to open a file with an application, %s is the app name
         gtk.ImageMenuItem.__init__(self, text)
         self.entry = entry
 
@@ -903,12 +903,12 @@ class AddApplicationDialog(Dialog):
 
         manager = ApplicationManager()
         application = manager.create(self.mimetype, name, cmd, NoDisplay=default)
-            # Default implies NoDisplay, this to keep the list
-            # more or less clean.
+        # Default implies NoDisplay, this to keep the list
+        # more or less clean.
 
         if not application.tryexec():
             ErrorDialog(self, _('Could not find executable "%s"') % application.cmd[0]).run()
-                # T: Error message for new commands in "open with" dialog
+            # T: Error message for new commands in "open with" dialog
             application.file.remove()
             return False
 
@@ -1095,7 +1095,7 @@ class CustomToolDict(DesktopEntryDict):
     @property
     def icon(self):
         return self['Desktop Entry'].get('Icon') or gtk.STOCK_EXECUTE
-            # get('Icon', gtk.STOCK_EXECUTE) still returns empty string if key exists but no value
+        # get('Icon', gtk.STOCK_EXECUTE) still returns empty string if key exists but no value
 
     @property
     def execcmd(self):

@@ -98,10 +98,10 @@ class TestFormatMixin(object):
             self.assertMultiLineEqual(result.tostring(), self.reference_xml)
         else:
             self.assertTrue(len(result.tostring().splitlines()) > 10)
-                    # Quick check that we got back *something*
+            # Quick check that we got back *something*
             string = ''.join(dumper.dump(result))
-                    # now we may have loss of formatting, but text should all be there
-                    #~ print '\n' + '>'*80 + '\n' + string + '\n' + '<'*80 + '\n'
+            # now we may have loss of formatting, but text should all be there
+            #~ print '\n' + '>'*80 + '\n' + string + '\n' + '<'*80 + '\n'
             self.assertNoTextMissing(string, reftree)
 
     _nonalpha_re = re.compile('\W')
@@ -125,8 +125,8 @@ class TestFormatMixin(object):
                     continue
 
                 wanted = self._nonalpha_re.sub(' ', wanted)
-                    # Non-alpha chars may be replaced with escapes
-                    # so no way to hard test them
+                # Non-alpha chars may be replaced with escapes
+                # so no way to hard test them
 
                 if wanted.isspace():
                     continue

@@ -59,11 +59,11 @@ class FileUnicodeError(Error):
         self.file = file
         self.error = error
         self.msg = _('Could not read: %s') % file.path
-                # T: message for FileUnicodeError (%s is the file name)
+        # T: message for FileUnicodeError (%s is the file name)
         self.description = _('This usually means the file contains invalid characters')
-                # T: message for FileUnicodeError
+        # T: message for FileUnicodeError
         self.description += '\n\n' + _('Details') + ':\n' + unicode(error)
-                # T: label for detailed error
+        # T: label for detailed error
 
 
 class FileChangedError(Error):
@@ -227,7 +227,7 @@ def _os_expanduser(path):
         # But also mbcs encoding does not handle all characters,
         # so only encode home part
         parts = path.replace('\\', '/').strip('/').split('/')
-            # parts[0] now is "~" or "~user"
+        # parts[0] now is "~" or "~user"
 
         if isinstance(path, unicode):
             part = parts[0].encode('mbcs')

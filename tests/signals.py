@@ -47,7 +47,7 @@ class TestEmitter(tests.TestCase):
         emitter.connect('foo', lambda o, a: a * 3)
         emitter.connect('foo', lambda o, a: a * 5)
         self.assertEqual(emitter.emit('foo', 'x'), 'xxx')
-            # pick first result
+        # pick first result
 
     def testSignalSetup(self):
         emitter = FancyEmitter()
@@ -60,7 +60,7 @@ class TestEmitter(tests.TestCase):
         emitter = ChildEmitter()
         emitter.connect('bar', lambda o: 'foo')  # no error
         self.assertRaises(AssertionError, emitter.connect, 'none_existing', lambda o: 'foo')
-            # assert non existing raises --> thus previous non-error was really OK
+        # assert non existing raises --> thus previous non-error was really OK
 
     def testRunSequence(self):
         emitter = ChildEmitter()

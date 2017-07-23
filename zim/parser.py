@@ -283,7 +283,7 @@ class ParserError(Error):
                 'line': self.parser_line_offset[0],
                 'snippet': self.parser_text.strip(),
         }
-            # T: Extended error message while parsing a file, gives file name, line number and words where error occurred
+        # T: Extended error message while parsing a file, gives file name, line number and words where error occurred
 
 
 class Rule(object):
@@ -383,8 +383,8 @@ class Parser(object):
         objects with the "|" operator.
         '''
         return self.__class__(self, other)
-            # Return extended copy, not modify self
-            # __init__ of new instance will make a copy of our rules
+        # Return extended copy, not modify self
+        # __init__ of new instance will make a copy of our rules
 
     def __call__(self, builder, text):
         '''Each parser object is callable so it can be used as a

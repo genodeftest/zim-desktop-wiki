@@ -222,7 +222,7 @@ class TestFS(tests.TestCase):
 
         # with windows line-ends
         file = open(tmpdir + '/newlines.txt', 'wb')
-            # binary mode means no automatic newline conversions
+        # binary mode means no automatic newline conversions
         file.write('Some lines\r\nWith win32 newlines\r\n')
         file = File(tmpdir + '/newlines.txt')
         self.assertEqual(file.read(), 'Some lines\nWith win32 newlines\n')
@@ -286,7 +286,7 @@ class TestFS(tests.TestCase):
         self.assertEqual(file3.basename, 'unique002.txt')
 
         self.assertEqual(dir.list(), ['unique.txt', 'unique001.txt'])
-            # we did not touch unique002.txt, so don't want to see it show up here
+        # we did not touch unique002.txt, so don't want to see it show up here
 
         file1.rename(dir.file('foo.txt'))
         self.assertEqual(file1.basename, 'unique.txt')  # don't update the object !
@@ -338,7 +338,7 @@ class TestFS(tests.TestCase):
         #~ # Monitor file
         #~ events = []
         #~ def monitor(*args):
-            #~ events.append(args)
+        #~ events.append(args)
 
         #~ file = tmpdir.file('foo')
         #~ file.connect('changed', monitor)
@@ -381,7 +381,7 @@ class TestFileOverwrite(tests.TestCase):
 
         # Check overwrite error when content changed
         self.modify(lambda p: open(p, 'w').write('XXX'))
-            # modify mtime and content
+        # modify mtime and content
         with FilterOverWriteWarning():
             self.assertRaises(FileWriteError, file.write, 'foo')
             self.assertTrue(file.check_has_changed_on_disk())
@@ -391,7 +391,7 @@ class TestFileOverwrite(tests.TestCase):
         file = File(self.path, checkoverwrite=True)
         file.write('bar')
         self.modify(lambda p: open(p, 'w').write('bar'))
-            # modify mtime but keep content the same
+        # modify mtime but keep content the same
         with FilterOverWriteWarning():
             file.write('foo')
         self.assertEquals(file.read(), 'foo')

@@ -192,13 +192,13 @@ class WWWInterface(object):
                     raise WebPageNotFoundError(path)
                 file = dir.file(path[7:])
                 content = [file.raw()]
-                    # Will raise FileNotFound when file does not exist
+                # Will raise FileNotFound when file does not exist
                 headers['Content-Type'] = file.get_mimetype()
             elif path.startswith('/+file/'):
                 file = self.notebook.dir.file(path[7:])
-                    # TODO: need abstraction for getting file from top level dir ?
+                # TODO: need abstraction for getting file from top level dir ?
                 content = [file.raw()]
-                    # Will raise FileNotFound when file does not exist
+                # Will raise FileNotFound when file does not exist
                 headers['Content-Type'] = file.get_mimetype()
             elif path.startswith('/+resources/'):
                 if self.template.resources_dir:
@@ -210,7 +210,7 @@ class WWWInterface(object):
 
                 if file:
                     content = [file.raw()]
-                        # Will raise FileNotFound when file does not exist
+                    # Will raise FileNotFound when file does not exist
                     headers['Content-Type'] = file.get_mimetype()
                 else:
                     raise WebPageNotFoundError(path)
@@ -324,7 +324,7 @@ class WWWLinker(ExportLinker):
     def page_object(self, path):
         '''Turn a L{Path} object in a relative link or URI'''
         return url_encode('/' + encode_filename(path.name) + '.html')
-            # TODO use script location as root for cgi-bin
+        # TODO use script location as root for cgi-bin
 
     def file_object(self, file):
         '''Turn a L{File} object in a relative link or URI'''

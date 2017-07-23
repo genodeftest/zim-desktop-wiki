@@ -20,8 +20,8 @@ from zim.formats import get_format, \
 from zim.tokenparser import skip_to_end_token, TEXT, END
 
 from zim.plugins.calendar import daterange_from_path
-        # TODO instead of just importing this function we should define
-        #      an interface or hook to call the calendar plugin object
+# TODO instead of just importing this function we should define
+#      an interface or hook to call the calendar plugin object
 
 logger = logging.getLogger('zim.plugins.tasklist')
 
@@ -33,7 +33,7 @@ from .dates import parse_date
 
 _tag_re = re.compile(r'(?<!\S)@(\w+)\b', re.U)
 _date_re = re.compile('[<>] ?' + _raw_parse_date_re.pattern + '|\[d:.+\]')
-        # "<" and ">" prefixes for dates, "[d: ...]" for backward compatibility
+# "<" and ">" prefixes for dates, "[d: ...]" for backward compatibility
 
 _MAX_DUE_DATE = '9999'  # Constant for empty due date - value chosen for sorting properties
 _NO_TAGS = '__no_tags__'  # Constant that serves as the "no tags" tag - _must_ be lower case
@@ -293,7 +293,7 @@ class TaskParser(object):
     def parse(self, tokens, default_start_date=0, default_due_date=_MAX_DUE_DATE):
 
         defaults = [True, 0, default_start_date, default_due_date]
-                                # [isopen, prio, start, due]
+        # [isopen, prio, start, due]
 
         def _is_list_heading(task):
             isopen, prio, start, due, tags, text = task[0]
@@ -411,7 +411,7 @@ class TaskParser(object):
                     parent_item = tasks[-1]
                 else:
                     parent_item = None
-                        # Since this line is not a task, sub-items will be added to top level list
+                    # Since this line is not a task, sub-items will be added to top level list
 
                 if next_token[0] in (BULLETLIST, NUMBEREDLIST):
                     # Sub-list
@@ -480,4 +480,4 @@ class TaskParser(object):
                 logger.warn('Invalid date format in task: %s', string)
 
         return [isopen, prio, start, due, tags, unicode(text.strip())]
-            # 0:open, 1:prio, 2:start, 3:due, 4:tags, 5:desc
+        # 0:open, 1:prio, 2:start, 3:due, 4:tags, 5:desc

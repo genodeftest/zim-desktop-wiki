@@ -351,23 +351,23 @@ class Re(object):
 
 # Some often used regexes
 is_uri_re = Re('^(\w[\w\+\-\.]*):')
-    # "scheme:"
+# "scheme:"
 is_url_re = Re('^(\w[\w\+\-\.]*)://')
-    # "scheme://"
+# "scheme://"
 is_email_re = Re('^(mailto:\S+|[^\s:]+)\@\S+\.\w+(\?.+)?$', re.U)
-    # "mailto:" address
-    # name "@" host
-    # but exclude other uris like mid: and cid:
+# "mailto:" address
+# name "@" host
+# but exclude other uris like mid: and cid:
 is_path_re = Re(r'^(/|\.\.?[/\\]|~.*[/\\]|[A-Za-z]:\\)')
-    # / ~/ ./ ../ ~user/  .\ ..\ ~\ ~user\
-    # X:\
+# / ~/ ./ ../ ~user/  .\ ..\ ~\ ~user\
+# X:\
 is_win32_path_re = Re(r'^[A-Za-z]:[\\/]')
-    # X:\ (or X:/)
+# X:\ (or X:/)
 is_win32_share_re = Re(r'^(\\\\[^\\]+\\.+|smb://)')
-    # \\host\share
-    # smb://host/share
+# \\host\share
+# smb://host/share
 is_interwiki_re = Re('^(\w[\w\+\-\.]*)\?(.*)', re.U)
-    # identifier "?" path
+# identifier "?" path
 is_interwiki_keyword_re = re.compile('^\w[\w\+\-\.]*$', re.U)
 
 
@@ -379,10 +379,10 @@ url_re = Re(r'''(
 	\b mailto: %(c)s+ \@ %(c)s+ [\w/]                            |
 	\b %(c)s+ \@ %(c)s+ \. \w+ \b
 )''' % _classes, re.X | re.U)
-    # Full url regex - much more strict then the is_url_re
-    # The host name in an uri can be "[hex:hex:..]" for ipv6
-    # but we do not want to match "[http://foo.org]"
-    # See rfc/3986 for the official -but unpractical- regex
+# Full url regex - much more strict then the is_url_re
+# The host name in an uri can be "[hex:hex:..]" for ipv6
+# but we do not want to match "[http://foo.org]"
+# See rfc/3986 for the official -but unpractical- regex
 
 
 def uri_scheme(link):
@@ -441,5 +441,5 @@ class TextBuffer(list):
     def prefix_lines(self, prefix):
         '''Prefix each line with string 'prefix'.'''
         lines = self.get_lines(end_with_newline=False)
-            # allowing end_with_newline here modifies content
+        # allowing end_with_newline here modifies content
         self[:] = [prefix + line for line in lines]

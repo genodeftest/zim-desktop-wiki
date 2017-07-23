@@ -261,7 +261,7 @@ def radio_action(*radio_options):
 
 def radio_option(key, label, stock=None, accelerator='', tooltip=''):
     return (key, stock, label, accelerator, tooltip)
-        # switching stock & label to match actiongroup.add_radio_actions()
+    # switching stock & label to match actiongroup.add_radio_actions()
 
 
 def gtk_radioaction_set_current(g_radio_action, key):

@@ -59,7 +59,7 @@ class MainWindowExtension(WindowExtension):
         except ValueError:
             MessageDialog(self.window,
                     _('Please select more than one line of text, first.')).run()
-                    # T: Error message in "" dialog, %s will be replaced by application name
+            # T: Error message in "" dialog, %s will be replaced by application name
             return
 
         first_lineno = sel_start.get_line()

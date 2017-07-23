@@ -149,12 +149,12 @@ class TestPlugins(tests.TestCase):
 
         for i, name in enumerate(manager):
             manager[name].preferences.emit('changed')
-                # Checking for exceptions and infinite recursion
+            # Checking for exceptions and infinite recursion
 
         self.assertTrue(i > 0)
         #~ self.assertTrue(preferences.modified)
-            # If "False" the check while loading the plugins is not valid
-            # FIXME this detection is broken due to autosave in ConfigManager ...
+        # If "False" the check while loading the plugins is not valid
+        # FIXME this detection is broken due to autosave in ConfigManager ...
 
         notebook = tests.new_notebook(self.get_tmp_name())
         ui = setupGtkInterface(self, notebook=notebook)
@@ -170,7 +170,7 @@ class TestPlugins(tests.TestCase):
 
         for i, name in enumerate(manager):
             manager[name].preferences.emit('changed')
-                # Checking for exceptions and infinite recursion
+            # Checking for exceptions and infinite recursion
 
         for name in manager:
             #~ print "REMOVE:", name

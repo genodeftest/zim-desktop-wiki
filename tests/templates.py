@@ -121,7 +121,7 @@ class TestExpressionParser(tests.TestCase):
 
         # Test operator precedence
         expr = ExpressionParser().parse('a or b and not c < d and f or x')
-            # Read as: '(a or ((b and ((not (c < d)) and f)) or x))'
+        # Read as: '(a or ((b and ((not (c < d)) and f)) or x))'
         wanted = ExpressionOperator(
                 operator.or_,
                 ExpressionParameter('a'),
@@ -165,7 +165,7 @@ class TestExpressionParser(tests.TestCase):
                 '',				# empty expression has no meaning
         ):
             self.assertRaises(ExpressionSyntaxError, p.parse, t)
-                    # TODO check for meaningfull error messages for these
+            # TODO check for meaningfull error messages for these
 
         # TODO any edge cases ?
 

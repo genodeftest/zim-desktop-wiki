@@ -302,21 +302,21 @@ class SourceViewWidget(TextViewWidget):
         #~ lang_selector.append_text('(None)')
         #~ for l in lang_names: lang_selector.append_text(l)
         #~ try:
-            #~ lang_selector.set_active(lang_ids.index(self._attrib['lang'])+1)
-            #~ self.set_language(self._attrib['lang'] or None, False)
+        #~ lang_selector.set_active(lang_ids.index(self._attrib['lang'])+1)
+        #~ self.set_language(self._attrib['lang'] or None, False)
         #~ except (ValueError, KeyError):
-            #~ lang_selector.set_active(0)
-            #~ self.set_language(None, False)
+        #~ lang_selector.set_active(0)
+        #~ self.set_language(None, False)
         #~ lang_selector.connect('changed', self.on_lang_changed)
         #~ bar.pack_start(lang_selector, False, False)
 
         #~ line_numbers = gtk.ToggleButton('Line numbers')
         #~ try:
-            #~ line_numbers.set_active(self._attrib['linenumbers']=='true')
-            #~ self.show_line_numbers(self._attrib['linenumbers'], False)
+        #~ line_numbers.set_active(self._attrib['linenumbers']=='true')
+        #~ self.show_line_numbers(self._attrib['linenumbers'], False)
         #~ except (ValueError, KeyError):
-            #~ line_numbers.set_active(True)
-            #~ self.show_line_numbers(True, False)
+        #~ line_numbers.set_active(True)
+        #~ self.show_line_numbers(True, False)
         #~ line_numbers.connect('toggled', self.on_line_numbers_toggled)
         #~ bar.pack_start(line_numbers, False, False)
 
@@ -326,7 +326,7 @@ class SourceViewWidget(TextViewWidget):
         # Pack everything
         #~ self.vbox.pack_start(bar, False, False)
         win = ScrolledWindow(self.view, gtk.POLICY_AUTOMATIC, gtk.POLICY_NEVER, gtk.SHADOW_NONE)
-            # only horizontal scroll
+        # only horizontal scroll
         self.vbox.pack_start(win)
 
         # Hook up signals
@@ -357,7 +357,7 @@ class SourceViewWidget(TextViewWidget):
             self.obj.show_line_numbers(item.get_active())
 
         item = gtk.CheckMenuItem(_('Show Line Numbers'))
-            # T: preference option for sourceview plugin
+        # T: preference option for sourceview plugin
         item.set_active(self.obj._attrib['linenumbers'])
         item.set_sensitive(self.view.get_editable())
         item.connect_after('activate', activate_linenumbers)
